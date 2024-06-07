@@ -11,7 +11,6 @@ class EditProfileScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: purpleColor,
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         title: boldText(text: editProfile, size: 16.0, color: white),
         actions: [
           TextButton(

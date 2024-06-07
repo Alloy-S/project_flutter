@@ -1,5 +1,7 @@
 import 'package:admins/const/const.dart';
+import 'package:admins/views/messages_screen/messages_screen.dart';
 import 'package:admins/views/profile_screen/edit_profilescreen.dart';
+import 'package:admins/views/shop_screen/shop_settings_screen.dart';
 import 'package:admins/views/widgets/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -47,6 +49,19 @@ class ProfileScreen extends StatelessWidget {
                 children: List.generate(
                   profileButtonsIcons.length,
                   (index) => ListTile(
+                    onTap: () {
+                      switch (index) {
+                        case 0:
+                          Get.to(() => ShopSettings());
+
+                          break;
+                        case 1:
+                          Get.to(() => MessagesScreen());
+
+                          break;
+                        default:
+                      }
+                    },
                     leading: Icon(
                       profileButtonsIcons[index],
                       color: white,

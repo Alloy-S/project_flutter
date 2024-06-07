@@ -1,8 +1,9 @@
 import 'package:admins/const/const.dart';
 import 'package:admins/views/widgets/text_style.dart';
 
-Widget customTextField({label, hint, controller}) {
+Widget customTextField({label, hint, controller, isDesc = false}) {
   return TextFormField(
+    maxLines: isDesc ? 4 : 1,
     decoration: InputDecoration(
       isDense: true,
       label: normalText(text: label),
