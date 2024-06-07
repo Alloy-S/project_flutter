@@ -2,7 +2,6 @@ import 'package:admins/const/const.dart';
 import 'package:admins/views/orders_screen/components/order_place.dart';
 import 'package:admins/views/widgets/text_style.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart' as intl;
 
 class OrderDetails extends StatelessWidget {
   const OrderDetails({super.key});
@@ -101,7 +100,7 @@ class OrderDetails extends StatelessWidget {
                       color: purpleColor,
                     ),
                   ),
-                  Divider(), // Changed from const Divider() to Divider()
+                  const Divider(),
                 ],
               );
             }).toList(),
