@@ -64,7 +64,7 @@ class ProfileScreen extends StatelessWidget{
             ListView.separated(
               shrinkWrap: true,
               separatorBuilder: (context, index){
-                return Divider(
+                return const Divider(
                   color: lightGrey,
                 );
               },

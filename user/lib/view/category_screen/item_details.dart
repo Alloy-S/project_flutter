@@ -13,17 +13,16 @@ class ItemDetails extends StatelessWidget{
       backgroundColor: lightGrey,
       appBar: AppBar(
         title: title!.text.color(darkFontGrey).fontFamily(bold).make(),
-
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.share,)),
-           IconButton(onPressed: (){}, icon: Icon(Icons.favorite_outline,))
+          IconButton(onPressed: (){}, icon: Icon(Icons.share)),
+           IconButton(onPressed: (){}, icon: Icon(Icons.favorite_outline)),
         ],
       ),
       body: Column(
         children: [
           Expanded(
             child: Padding(
-              padding:  const EdgeInsets.all(8),
+            padding:  const EdgeInsets.all(8),
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,7 +31,8 @@ class ItemDetails extends StatelessWidget{
                     VxSwiper.builder(
                       autoPlay: true,
                       height: 350,
-                      itemCount: 3,aspectRatio: 16 / 9, itemBuilder: (context, index){
+                      itemCount: 3,
+                      aspectRatio: 16 / 9, itemBuilder: (context, index){
                       return Image.asset(imgFc5, width: double.infinity, fit: BoxFit.cover);
                     }),
 
@@ -41,7 +41,7 @@ class ItemDetails extends StatelessWidget{
                     title!.text.size(16).color(darkFontGrey).fontFamily(semibold).make(),
                     10.heightBox,
                     //rating
-                    VxRating(onRatingUpdate: (value){}, normalColor: textfieldGrey, selectionColor: golden, maxRating: 5,count: 5, size: 25, stepInt: true),
+                    VxRating(onRatingUpdate: (value){}, normalColor: textfieldGrey, selectionColor: golden, maxRating: 5, size: 25, stepInt: true),
                     
                     10.heightBox,
                     "\$30,000".text.color(redColor).fontFamily(bold).size(18).make(),

@@ -1,3 +1,6 @@
+import 'package:emart_app/view/category_screen/category_screen.dart';
+import 'package:emart_app/view/home_screen/home.dart';
+import 'package:emart_app/view/home_screen/home_screen.dart';
 import 'package:emart_app/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'consts/consts.dart';
