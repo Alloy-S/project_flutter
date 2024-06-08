@@ -41,5 +41,3 @@ const nameHint = "eg. Vendor Name",
     website = "Shop Website",
     shopName = "Shop Name",
     address = "Shop Address";
-
-const hahahahah= "lahjkdbfgajfgsdhjkgba"
