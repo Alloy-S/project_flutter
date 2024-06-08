@@ -3,6 +3,7 @@ import 'package:admins/views/orders_screen/components/order_place.dart';
 import 'package:admins/views/widgets/our_button.dart';
 import 'package:admins/views/widgets/text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class OrderDetails extends StatelessWidget {
   const OrderDetails({super.key});
@@ -23,6 +24,48 @@ class OrderDetails extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              //order delivery status section
+              Visibility(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    boldText(
+                        text: "Order Status:", color: fontGrey, size: 16.0),
+                    SwitchListTile(
+                      activeColor: green,
+                      value: true,
+                      onChanged: (value) {},
+                      title: boldText(text: "Placed", color: fontGrey),
+                    ),
+                    SwitchListTile(
+                      activeColor: green,
+                      value: true,
+                      onChanged: (value) {},
+                      title: boldText(text: "Confirmed", color: fontGrey),
+                    ),
+                    SwitchListTile(
+                      activeColor: green,
+                      value: false,
+                      onChanged: (value) {},
+                      title: boldText(text: "on Delivery", color: fontGrey),
+                    ),
+                    SwitchListTile(
+                      activeColor: green,
+                      value: false,
+                      onChanged: (value) {},
+                      title: boldText(text: "Delivered", color: fontGrey),
+                    ),
+                  ],
+                )
+                    .box
+                    .padding(EdgeInsets.all(8))
+                    .outerShadowMd
+                    .white
+                    .border(color: lightGrey)
+                    .roundedSM
+                    .make(),
+              ),
+              //order details section
               Column(
                 children: [
                   orderPlaceDetails(
