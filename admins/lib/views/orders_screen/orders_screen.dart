@@ -1,7 +1,9 @@
 import 'package:admins/const/const.dart';
+import 'package:admins/views/orders_screen/order_details.dart';
 import 'package:admins/views/widgets/appbar_widget.dart';
 import 'package:admins/views/widgets/text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart' as intl;
 
 class OrdersScreen extends StatelessWidget {
@@ -19,7 +21,9 @@ class OrdersScreen extends StatelessWidget {
             children: List.generate(
               20,
               (index) => ListTile(
-                onTap: () {},
+                onTap: () {
+                  Get.to(() => OrderDetails());
+                },
                 tileColor: textfieldGrey,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
