@@ -16,7 +16,7 @@ class CategoryDetails extends StatelessWidget{
           title: title!.text.fontFamily(bold).white.make(),
         ),
         body: Container(
-          padding: EdgeInsets.all(12),
+          padding: const EdgeInsets.all(12),
           child: Column(
             children: [
               SingleChildScrollView(
@@ -46,7 +46,7 @@ class CategoryDetails extends StatelessWidget{
                   physics: BouncingScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: 6,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 250, mainAxisExtent: 8, crossAxisSpacing: 8), itemBuilder: (context, index){
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 8, mainAxisExtent: 250, crossAxisSpacing: 8), itemBuilder: (context, index){
                     return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

@@ -19,7 +19,7 @@ class CategoryScreen extends StatelessWidget{
         child: GridView.builder(
           shrinkWrap: true,
           itemCount: 9,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, mainAxisSpacing: 8, mainAxisExtent: 200), itemBuilder: (context, index){
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, mainAxisSpacing: 8, crossAxisSpacing: 8 ,mainAxisExtent: 200), itemBuilder: (context, index){
           return Column(
             children: [Image.asset(categoriesImages[index], height: 120,
             width: 200, fit: BoxFit.cover),

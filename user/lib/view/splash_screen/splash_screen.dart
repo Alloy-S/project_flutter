@@ -16,14 +16,14 @@ class _SplashScreenState extends State<SplashScreen> {
   // change screen
   changeScreen() {
     Future.delayed(Duration(seconds: 3), () {
-      Get.to(() => const LoginScreen());
+      Get.off(() => const LoginScreen());
     });
   }
 
   @override
   void initState() {
-    changeScreen();
     super.initState();
+    changeScreen();
   }
 
   @override

@@ -1,11 +1,14 @@
 import 'package:admins/const/const.dart';
+import 'package:admins/firebase_options.dart';
 import 'package:admins/views/auth_screen/login_screen.dart';
-// import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform
+  );
   runApp(const MyApp());
 }
 
