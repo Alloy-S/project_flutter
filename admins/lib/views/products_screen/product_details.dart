@@ -1,7 +1,5 @@
-import 'package:admins/const/colors.dart';
 import 'package:admins/const/const.dart';
 import 'package:admins/views/widgets/text_style.dart';
-import 'package:flutter/material.dart';
 
 class ProductDetails extends StatelessWidget {
   const ProductDetails({super.key});

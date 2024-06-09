@@ -42,4 +42,4 @@ const nameHint = "eg. Vendor Name",
     shopName = "Shop Name",
     address = "Shop Address";
 
-const hahahahah= "lahjkdbfgajfgsdhjkgba"
+const hahahahah= "lahjkdbfgajfgsdhjkgba";

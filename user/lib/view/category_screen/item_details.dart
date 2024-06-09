@@ -1,4 +1,3 @@
-import 'package:emart_app/consts/colors.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/widgets_common/our_button.dart';
 import 'package:flutter/material.dart';

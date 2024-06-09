@@ -1,7 +1,6 @@
 import 'package:admins/const/const.dart';
 import 'package:admins/views/messages_screen/chat_screen.dart';
 import 'package:admins/views/widgets/text_style.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MessagesScreen extends StatelessWidget {

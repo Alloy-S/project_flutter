@@ -1,8 +1,6 @@
 import 'package:admins/const/const.dart';
 import 'package:admins/views/messages_screen/components/chat_bubble.dart';
 import 'package:admins/views/widgets/text_style.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});

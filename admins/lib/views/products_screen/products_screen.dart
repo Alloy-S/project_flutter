@@ -3,7 +3,6 @@ import 'package:admins/views/products_screen/add_product.dart';
 import 'package:admins/views/products_screen/product_details.dart';
 import 'package:admins/views/widgets/appbar_widget.dart';
 import 'package:admins/views/widgets/text_style.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductsScreen extends StatelessWidget {

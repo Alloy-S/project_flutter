@@ -1,10 +1,8 @@
-import 'package:admins/const/colors.dart';
 import 'package:admins/const/const.dart';
 import 'package:admins/views/products_screen/components/product_dropdown.dart';
 import 'package:admins/views/products_screen/components/product_images.dart';
 import 'package:admins/views/widgets/custom_textfield.dart';
 import 'package:admins/views/widgets/text_style.dart';
-import 'package:flutter/material.dart';
 
 class AddProduct extends StatelessWidget {
   const AddProduct({super.key});

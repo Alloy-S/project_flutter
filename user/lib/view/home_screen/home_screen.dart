@@ -1,4 +1,3 @@
-import 'package:emart_app/consts/colors.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/view/home_screen/components/featured_button.dart';
 import 'package:emart_app/widgets_common/home_buttons.dart';

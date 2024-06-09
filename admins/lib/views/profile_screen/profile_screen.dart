@@ -3,7 +3,6 @@ import 'package:admins/views/messages_screen/messages_screen.dart';
 import 'package:admins/views/profile_screen/edit_profilescreen.dart';
 import 'package:admins/views/shop_screen/shop_settings_screen.dart';
 import 'package:admins/views/widgets/text_style.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProfileScreen extends StatelessWidget {

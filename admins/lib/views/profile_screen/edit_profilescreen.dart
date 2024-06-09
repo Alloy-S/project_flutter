@@ -1,7 +1,6 @@
 import 'package:admins/const/const.dart';
 import 'package:admins/views/widgets/custom_textfield.dart';
 import 'package:admins/views/widgets/text_style.dart';
-import 'package:flutter/material.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});

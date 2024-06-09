@@ -4,7 +4,6 @@ import 'package:emart_app/view/cart_screen/cart_screen.dart';
 import 'package:emart_app/view/category_screen/category_screen.dart';
 import 'package:emart_app/view/home_screen/home_screen.dart';
 import 'package:emart_app/view/profile_screen/profile_screen.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

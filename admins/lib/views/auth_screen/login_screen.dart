@@ -2,8 +2,6 @@ import 'package:admins/const/const.dart';
 import 'package:admins/views/home_screen/home.dart';
 import 'package:admins/views/widgets/our_button.dart';
 import 'package:admins/views/widgets/text_style.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 // import 'package:flutter/material.dart';
 

@@ -2,8 +2,6 @@ import 'package:admins/const/const.dart';
 import 'package:admins/views/orders_screen/components/order_place.dart';
 import 'package:admins/views/widgets/our_button.dart';
 import 'package:admins/views/widgets/text_style.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class OrderDetails extends StatelessWidget {
   const OrderDetails({super.key});
