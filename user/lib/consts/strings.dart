@@ -16,6 +16,8 @@ const retypePasssword = "Retype Password";
 const name = "Name";
 const nameHint = "Alloy";
 const privacyPolicy = "Privacy Policy";
+const loggedin = "Logged in succesfully";
+const loggedout = "Logged out succesfully";
 const termAndCond = "Term and Conditions";
 const alreadyHaveAccount = "Already have account? ";
 
