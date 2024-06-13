@@ -1,4 +1,5 @@
 import 'package:emart_app/consts/firebase_const.dart';
+import 'package:get/get.dart';
 
 class FirestoreServices {
   //get user data
@@ -7,5 +8,15 @@ class FirestoreServices {
   }
   static getProducts(category){
     return firestore.collection(productsCollection).where('p_category', isEqualTo: category).snapshots();
+  }
+
+  //get cart
+  static getCart(uid){
+    return firestore.collection(cartCollection).where('added_by',isEqualTo: uid).snapshots();
+  }
+
+  //delete cart
+  static deleteDocument(docId){
+    return firestore.collection(cartCollection).doc(docId).delete();
   }
 }
