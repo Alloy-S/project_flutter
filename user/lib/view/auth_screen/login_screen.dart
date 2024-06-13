@@ -44,14 +44,6 @@ class LoginScreen extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                         onPressed: () async {
-                          await controller
-                              .loginMethod(context: context)
-                              .then((onValue) {
-                            if (onValue != null) {
-                              VxToast.show(context, msg: loggedin);
-                              Get.offAll(() => const Home());
-                            }
-                          });
                         },
                         child: forgetPass.text.make())),
                 5.heightBox,
@@ -67,11 +59,10 @@ class LoginScreen extends StatelessWidget {
 
                         onPress: () async {
                           controller.isLoading(true);
-
                           await controller.loginMethod(context: context).then((onValue){
                             if(onValue != null){
                               VxToast.show(context, msg: loggedin);
-                              Get.off(() => const Home());
+                              Get.offAll(() => const Home());
                             }else{
                               controller.isLoading(false);
                             }

@@ -12,7 +12,7 @@ class AuthController extends GetxController {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
 
-
+  
 
   //login method
 
@@ -41,7 +41,7 @@ class AuthController extends GetxController {
 
   //storing data method
   storeUserData(name,password,email) async {
-    DocumentReference store = firestore.collection(userCollection).doc(currentUser!.uid);
+    DocumentReference store =  firestore.collection(userCollection).doc(currentUser!.uid);
     store.set({
       'name' : name,
       'password' : password,
@@ -57,6 +57,8 @@ class AuthController extends GetxController {
   signoutMethod(context) async {
     try{
       await auth.signOut();
+      emailController.text = '';
+      passwordController.text = '';
     }catch (e) {
       VxToast.show(context, msg: e.toString());
     }
