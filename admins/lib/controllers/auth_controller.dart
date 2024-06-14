@@ -7,7 +7,7 @@ class AuthController extends GetxController {
 
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
-
+  
   // login method
 
   Future<UserCredential?> loginMethod({context}) async {
@@ -42,7 +42,9 @@ class AuthController extends GetxController {
 
   signoutMethod(context) async {
     try {
+      // currentUser = null;
       await auth.signOut();
+      
     } catch(e) {
        VxToast.show(context, msg: e.toString());
     }
