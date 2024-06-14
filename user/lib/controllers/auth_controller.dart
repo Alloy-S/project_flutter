@@ -57,8 +57,6 @@ class AuthController extends GetxController {
   signoutMethod(context) async {
     try{
       await auth.signOut();
-      emailController.text = '';
-      passwordController.text = '';
     }catch (e) {
       VxToast.show(context, msg: e.toString());
     }

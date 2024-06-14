@@ -6,12 +6,13 @@ import 'package:emart_app/services/firestore_services.dart';
 import 'package:emart_app/view/auth_screen/login_screen.dart';
 import 'package:emart_app/view/profile_screen/components/details_cart.dart';
 import 'package:emart_app/view/profile_screen/edit_profile_screen.dart';
+import 'package:emart_app/view/splash_screen/splash_screen.dart';
 import 'package:emart_app/widgets_common/bg_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +90,7 @@ class ProfileScreen extends StatelessWidget {
                               onPressed: () async {
                                 await Get.put(AuthController())
                                     .signoutMethod(context);
-                                Get.offAll(() => const LoginScreen());
+                                Get.offAll(() => const SplashScreen());
                               },
                               child:
                                   logout.text.fontFamily(semibold).white.make(),
