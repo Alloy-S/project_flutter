@@ -2,6 +2,7 @@ import 'package:admins/const/const.dart';
 import 'package:admins/controllers/products_controller.dart';
 import 'package:admins/services/store_services.dart';
 import 'package:admins/views/products_screen/add_product.dart';
+import 'package:admins/views/products_screen/edit_product.dart';
 import 'package:admins/views/products_screen/product_details.dart';
 import 'package:admins/views/widgets/appbar_widget.dart';
 import 'package:admins/views/widgets/loading_indicator.dart';
@@ -15,6 +16,7 @@ class ProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var controller = Get.put(ProductsController());
+    var popupMenuController = VxPopupMenuController();
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: purpleColor,
@@ -77,6 +79,7 @@ class ProductsScreen extends StatelessWidget {
                           ],
                         ),
                         trailing: VxPopupMenu(
+                            controller: popupMenuController,
                             arrowSize: 0.0,
                             child: Icon(Icons.more_vert_rounded),
                             menuBuilder: () => Column(
@@ -104,7 +107,7 @@ class ProductsScreen extends StatelessWidget {
                                                   : popupMenuTitles[i],
                                               color: darkGrey),
                                         ],
-                                      ).onTap(() {
+                                      ).onTap(() async {
                                         switch (i) {
                                           case 0:
                                             if (data[index]['is_featured']) {
@@ -120,18 +123,22 @@ class ProductsScreen extends StatelessWidget {
                                             }
                                             break;
                                           case 1:
-                                          Get.to(() => AddProduct());
+                                            await controller.getCategories();
+                                            controller.populateCategoryList();
+                                            Get.to(() => EditProduct(
+                                                  data: data[index],
+                                                ));
                                             break;
                                           case 2:
                                             controller
                                                 .removeProduct(data[index].id);
                                             VxToast.show(context,
-                                                msg:
-                                                    "Product removed");
+                                                msg: "Product removed");
                                             break;
 
                                           default:
                                         }
+                                        popupMenuController.hideMenu();
                                       }),
                                     ),
                                   ),

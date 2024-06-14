@@ -22,7 +22,7 @@ class ProductsController extends GetxController {
   var categoryList = <String>[].obs;
   var subcategoryList = <String>[].obs;
   List<Category> category = [];
-  var pImagesLink = [];
+  List<dynamic> pImagesLink = [];
   var pImagesList = RxList<dynamic>.generate(3, (index) => null);
 
   var categoryValue = ''.obs;
@@ -122,8 +122,19 @@ class ProductsController extends GetxController {
     }, SetOptions(merge: true));
   }
 
-  editProduct(docId) async {
-
+  updateProduct({docId, category, subcategory, desc, name, price, quantity, context}) async {
+    var store = firestore.collection(productsCollection).doc(docId);
+    store.set({
+      'p_category': category,
+      'p_subcategory': subcategory,
+      'p_imgs': FieldValue.arrayUnion(pImagesLink),
+      'p_desc': desc,
+      'p_name': name,
+      'p_price': price,
+      'p_quantity': quantity,
+    }, SetOptions(merge: true));
+    isloading(false);
+    VxToast.show(context, msg: "Product uploaded");
   }
 
   removeProduct(docId) async {
