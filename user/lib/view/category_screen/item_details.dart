@@ -1,5 +1,6 @@
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/controllers/product_controller.dart';
+import 'package:emart_app/view/chat_screen/chat_screen.dart';
 import 'package:emart_app/widgets_common/our_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,21 +16,33 @@ class ItemDetails extends StatelessWidget {
     var controller = Get.find<ProductController>();
     // ignore: deprecated_member_use
     return WillPopScope(
-      onWillPop: () async { 
+      onWillPop: () async {
         controller.resetValue();
         return true;
-       },
+      },
       child: Scaffold(
         backgroundColor: lightGrey,
         appBar: AppBar(
-          leading: IconButton(onPressed: (){
-            controller.resetValue();
-            Get.back();
-          }, icon: const Icon(Icons.arrow_back)),
+          leading: IconButton(
+              onPressed: () {
+                controller.resetValue();
+                Get.back();
+              },
+              icon: const Icon(Icons.arrow_back)),
           title: title!.text.color(darkFontGrey).fontFamily(bold).make(),
           actions: [
             IconButton(onPressed: () {}, icon: Icon(Icons.share)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.favorite_outline)),
+            IconButton(onPressed: () {
+              if(controller.isFav.value){
+                controller.removeFromWishList(data.id);
+                controller.isFav(false);
+              }else{
+                controller.addToWishList(data.id);
+                controller.isFav(true);
+              }
+
+
+            }, icon: Icon(Icons.favorite_outline)),
           ],
         ),
         body: Column(
@@ -52,7 +65,7 @@ class ItemDetails extends StatelessWidget {
                           return Image.network(data['p_imgs'][index],
                               width: double.infinity, fit: BoxFit.cover);
                         }),
-      
+
                     10.heightBox,
                     //title dan detail
                     title!.text
@@ -72,7 +85,7 @@ class ItemDetails extends StatelessWidget {
                       count: 5,
                       size: 25,
                     ),
-      
+
                     10.heightBox,
                     "${data['p_price']}"
                         .numCurrency
@@ -81,9 +94,9 @@ class ItemDetails extends StatelessWidget {
                         .fontFamily(bold)
                         .size(18)
                         .make(),
-      
+
                     10.heightBox,
-      
+
                     Row(
                       children: [
                         Expanded(
@@ -103,8 +116,13 @@ class ItemDetails extends StatelessWidget {
                         )),
                         CircleAvatar(
                           backgroundColor: Colors.white,
-                          child: Icon(Icons.message_rounded, color: darkFontGrey),
-                        )
+                          child:
+                              Icon(Icons.message_rounded, color: darkFontGrey),
+                        ).onTap(() {
+                          Get.to(() => const ChatScreen(),
+                          arguments: [data['p_seller'], data['vendor_id']],
+                          );
+                        })
                       ],
                     )
                         .box
@@ -112,7 +130,7 @@ class ItemDetails extends StatelessWidget {
                         .padding(EdgeInsets.symmetric(horizontal: 16))
                         .color(textfieldGrey)
                         .make(),
-      
+
                     //color section
                     20.heightBox,
                     Obx(
@@ -122,7 +140,8 @@ class ItemDetails extends StatelessWidget {
                             children: [
                               SizedBox(
                                 width: 100,
-                                child: "Color: ".text.color(textfieldGrey).make(),
+                                child:
+                                    "Color: ".text.color(textfieldGrey).make(),
                               ),
                               Row(
                                 children: List.generate(
@@ -133,15 +152,16 @@ class ItemDetails extends StatelessWidget {
                                             VxBox()
                                                 .size(40, 40)
                                                 .roundedFull
-                                                .color(
-                                                    Color(data['p_colors'][index])
-                                                        .withOpacity(1.0))
+                                                .color(Color(
+                                                        data['p_colors'][index])
+                                                    .withOpacity(1.0))
                                                 .margin(
                                                     const EdgeInsets.symmetric(
                                                         horizontal: 4))
                                                 .make()
                                                 .onTap(() {
-                                              controller.changeColorIndex(index);
+                                              controller
+                                                  .changeColorIndex(index);
                                             }),
                                             Visibility(
                                                 visible: index ==
@@ -153,14 +173,16 @@ class ItemDetails extends StatelessWidget {
                               ),
                             ],
                           ).box.padding(const EdgeInsets.all(8)).make(),
-      
+
                           //total row
                           Row(
                             children: [
                               SizedBox(
                                 width: 100,
-                                child:
-                                    "Quantity: ".text.color(textfieldGrey).make(),
+                                child: "Quantity: "
+                                    .text
+                                    .color(textfieldGrey)
+                                    .make(),
                               ),
                               Obx(
                                 () => Row(
@@ -195,12 +217,13 @@ class ItemDetails extends StatelessWidget {
                               ),
                             ],
                           ).box.padding(const EdgeInsets.all(8)).make(),
-      
+
                           Row(
                             children: [
                               SizedBox(
                                 width: 100,
-                                child: "Total: ".text.color(textfieldGrey).make(),
+                                child:
+                                    "Total: ".text.color(textfieldGrey).make(),
                               ),
                               "${controller.totalPrice.value}"
                                   .numCurrency
@@ -214,21 +237,21 @@ class ItemDetails extends StatelessWidget {
                         ],
                       ).box.white.shadowSm.make(),
                     ),
-      
+
                     //deskripsi
                     10.heightBox,
-      
+
                     "Description"
                         .text
                         .color(darkFontGrey)
                         .fontFamily(semibold)
                         .make(),
-      
+
                     10.heightBox,
                     "${data['p_desc']}".text.color(darkFontGrey).make(),
-      
+
                     10.heightBox,
-      
+
                     ListView(
                       physics: BouncingScrollPhysics(),
                       shrinkWrap: true,
@@ -243,16 +266,16 @@ class ItemDetails extends StatelessWidget {
                                 trailing: const Icon(Icons.arrow_forward),
                               )),
                     ),
-      
+
                     20.heightBox,
                     //product may like
-      
+
                     productsyoumaylike.text
                         .fontFamily(bold)
                         .size(16)
                         .color(darkFontGrey)
                         .make(),
-      
+
                     10.heightBox,
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,

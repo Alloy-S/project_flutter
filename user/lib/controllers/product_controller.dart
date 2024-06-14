@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/models/category_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,6 +11,9 @@ class ProductController extends GetxController {
   var totalPrice = 0.obs;
 
   var subcat = [];
+
+  var isFav = false.obs;
+
 
   getSubCategories(title) async {
     subcat.clear();
@@ -56,9 +60,23 @@ class ProductController extends GetxController {
       VxToast.show(context, msg: onError.toString());
     });
   }
-  resetValue(){
+
+  resetValue() {
     totalPrice.value = 0;
     quantity.value = 0;
     colorIndex.value = 0;
   }
+
+  addToWishList(docId) async {
+    await firestore.collection(productsCollection).doc(docId).set({
+      'p_wishlist': FieldValue.arrayUnion([currentUser!.uid])
+    }, SetOptions(merge: true));
+  }
+
+  removeFromWishList(docId) async {
+    await firestore.collection(productsCollection).doc(docId).set({
+      'p_wishlist': FieldValue.arrayRemove([currentUser!.uid])
+    }, SetOptions(merge: true));
+  }
+
 }
