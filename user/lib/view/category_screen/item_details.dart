@@ -4,6 +4,7 @@ import 'package:emart_app/view/chat_screen/chat_screen.dart';
 import 'package:emart_app/widgets_common/our_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 class ItemDetails extends StatelessWidget {
   final String? title;
@@ -32,17 +33,20 @@ class ItemDetails extends StatelessWidget {
           title: title!.text.color(darkFontGrey).fontFamily(bold).make(),
           actions: [
             IconButton(onPressed: () {}, icon: Icon(Icons.share)),
-            IconButton(onPressed: () {
-              if(controller.isFav.value){
-                controller.removeFromWishList(data.id);
-                controller.isFav(false);
-              }else{
-                controller.addToWishList(data.id);
-                controller.isFav(true);
-              }
-
-
-            }, icon: Icon(Icons.favorite_outline)),
+            Obx(
+              () => IconButton(
+                  onPressed: () {
+                    if (controller.isFav.value) {
+                      controller.removeFromWishList(data.id, context);
+                    } else {
+                      controller.addToWishList(data.id, context);
+                    }
+                  },
+                  icon: Icon(
+                    Icons.favorite_outline,
+                    color: controller.isFav.value ? redColor : darkFontGrey,
+                  )),
+            ),
           ],
         ),
         body: Column(
@@ -119,8 +123,9 @@ class ItemDetails extends StatelessWidget {
                           child:
                               Icon(Icons.message_rounded, color: darkFontGrey),
                         ).onTap(() {
-                          Get.to(() => const ChatScreen(),
-                          arguments: [data['p_seller'], data['vendor_id']],
+                          Get.to(
+                            () => const ChatScreen(),
+                            arguments: [data['p_seller'], data['vendor_id']],
                           );
                         })
                       ],

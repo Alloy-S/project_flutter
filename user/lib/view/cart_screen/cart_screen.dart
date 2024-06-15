@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/controllers/cart_controller.dart';
 import 'package:emart_app/services/firestore_services.dart';
+import 'package:emart_app/view/cart_screen/shipping_screen.dart';
 import 'package:emart_app/widgets_common/loadingIndicator.dart';
 import 'package:emart_app/widgets_common/our_button.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,17 @@ class CartScreen extends StatelessWidget {
 
     return Scaffold(
         backgroundColor: whiteColor,
+        bottomNavigationBar: SizedBox(
+          height: 60,
+          child: ourButton(
+            color: redColor,
+            onPress: () {
+              Get.to(() => const ShippingDetails());
+            },
+            textColor: whiteColor,
+            title: "Procees to Shipping",
+          ),
+        ),
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: "Shopping cart".text.color(darkFontGrey).make(),
@@ -37,6 +49,8 @@ class CartScreen extends StatelessWidget {
               } else {
                 var data = snapshot.data!.docs;
                 controller.calculate(data);
+                controller.productSnapshot = data;
+                
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -48,11 +62,12 @@ class CartScreen extends StatelessWidget {
                                 return ListTile(
                                   leading:
                                       Image.network("${data[index]['img']}"),
-                                  title: "${data[index]['title']} (x${data[index]['qty']})"
-                                      .text
-                                      .fontFamily(semibold)
-                                      .size(16)
-                                      .make(),
+                                  title:
+                                      "${data[index]['title']} (x${data[index]['qty']})"
+                                          .text
+                                          .fontFamily(semibold)
+                                          .size(16)
+                                          .make(),
                                   subtitle: "${data[index]['tprice']}"
                                       .numCurrency
                                       .text
@@ -91,13 +106,15 @@ class CartScreen extends StatelessWidget {
                           .roundedSM
                           .make(),
                       .10.heightBox,
-                      SizedBox(
-                          width: context.screenWidth - 60,
-                          child: ourButton(
-                              color: redColor,
-                              onPress: () {},
-                              textColor: whiteColor,
-                              title: "Procees to Shipping"))
+                      // SizedBox(
+                      //   width: context.screenWidth - 60,
+                      //   child: ourButton(
+                      //     color: redColor,
+                      //     onPress: () {},
+                      //     textColor: whiteColor,
+                      //     title: "Procees to Shipping",
+                      //   ),
+                      // ),
                     ],
                   ),
                 );
