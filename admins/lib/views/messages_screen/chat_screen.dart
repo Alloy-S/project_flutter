@@ -8,17 +8,23 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
-class ChatScreen extends StatelessWidget {
-  const ChatScreen({super.key});
+class ChatScreen extends StatefulWidget {
+  final dynamic data;
+  const ChatScreen({super.key, this.data});
 
   @override
+  State<ChatScreen> createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
+  @override
   Widget build(BuildContext context) {
-    var controller = Get.put(ChatsController());
+    var controller = Get.put(ChatsController(widget.data.id));
 
     return Scaffold(
       appBar: AppBar(
         title: boldText(
-            text: "${controller.friendName}", size: 16.0, color: fontGrey),
+            text: "${widget.data['sender_name']}", size: 16.0, color: fontGrey),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -75,6 +81,7 @@ class ChatScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextFormField(
+                      controller: controller.msgController,
                       decoration: const InputDecoration(
                         isDense: true,
                         hintText: "Enter Message",
@@ -93,6 +100,7 @@ class ChatScreen extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
+                      VxToast.show(context, msg: "send");
                       controller.sendMsg(controller.msgController.text);
                       controller.msgController.clear();
                     },

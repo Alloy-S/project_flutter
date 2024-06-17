@@ -28,7 +28,7 @@ Widget chatBubble(DocumentSnapshot data) {
           "${data['msg']}".text.white.size(16).make(),
           // normalText(text: "Your message here..."),
           10.heightBox,
-          time.text.color(white.withOpacity(0.5)).make(),
+          // time.text.color(white.withOpacity(0.5)).make(),
           normalText(text: time.toString()),
         ],
       ),
