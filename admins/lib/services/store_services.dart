@@ -18,11 +18,26 @@ class StoreServices {
   }
 
   static getOrders(uid) {
-    return firestore.collection(ordersCollection).where('vendors', arrayContains: uid).snapshots();
+    return firestore
+        .collection(ordersCollection)
+        .where('vendors', arrayContains: uid)
+        .snapshots();
   }
 
   static getProducts(uid) {
-    return firestore.collection(productsCollection).where('vendor_id', isEqualTo: uid).snapshots();
+    return firestore
+        .collection(productsCollection)
+        .where('vendor_id', isEqualTo: uid)
+        .snapshots();
+  }
+
+  static getChatMessages(docId) {
+    return firestore
+        .collection(chatsCollection)
+        .doc(docId)
+        .collection(messagesCollection)
+        .orderBy('created_on', descending: false)
+        .snapshots();
   }
 
   // static getPopularProducts(uid) {
