@@ -323,25 +323,30 @@ class ItemDetails extends StatelessWidget {
                 ),
               ),
             )),
-            SizedBox(
-              width: double.infinity,
-              height: 60,
-              child: ourButton(
-                  color: redColor,
-                  onPress: () {
-                    controller.addToCart(
-                        color: data['p_colors'][controller.colorIndex.value],
-                        context: context,
-                        img: data['p_imgs'][0],
-                        qty: controller.quantity.value,
-                        sellername: data['p_seller'],
-                        title: data['p_name'],
-                        tprice: controller.totalPrice.value);
-                    VxToast.show(context, msg: "Added To Cart");
-                  },
-                  textColor: whiteColor,
-                  title: "Add to cart"),
-            )
+            Obx(
+              () => SizedBox(
+                width: double.infinity,
+                height: 60,
+                child: ourButton(
+                    color: redColor,
+                    onPress: controller.quantity.value > 0
+                        ? () {
+                            controller.addToCart(
+                                color:
+                                    data['p_colors'][controller.colorIndex.value],
+                                context: context,
+                                img: data['p_imgs'][0],
+                                qty: controller.quantity.value,
+                                sellername: data['p_seller'],
+                                title: data['p_name'],
+                                tprice: controller.totalPrice.value);
+                            VxToast.show(context, msg: "Added To Cart");
+                          }
+                        : null,
+                    textColor: whiteColor,
+                    title: "Add to cart"),
+              ),
+            ),
           ],
         ),
       ),
