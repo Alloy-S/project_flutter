@@ -1,5 +1,3 @@
-// import 'dart:ffi';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/controllers/cart_controller.dart';
@@ -27,7 +25,7 @@ class CartScreen extends StatelessWidget {
               Get.to(() => const ShippingDetails());
             },
             textColor: whiteColor,
-            title: "Procees to Shipping",
+            title: "Proceed to Shipping",
           ),
         ),
         appBar: AppBar(
@@ -50,37 +48,64 @@ class CartScreen extends StatelessWidget {
                 var data = snapshot.data!.docs;
                 controller.calculate(data);
                 controller.productSnapshot = data;
-                
+
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
                       Expanded(
-                          child: ListView.builder(
-                              itemCount: data.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return ListTile(
-                                  leading:
-                                      Image.network("${data[index]['img']}"),
-                                  title:
-                                      "${data[index]['title']} (x${data[index]['qty']})"
-                                          .text
-                                          .fontFamily(semibold)
-                                          .size(16)
-                                          .make(),
-                                  subtitle: "${data[index]['tprice']}"
+                        child: ListView.builder(
+                          itemCount: data.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            var item = data[index];
+                            return ListTile(
+                              leading: Image.network("${item['img']}"),
+                              title: "${item['title']} (x${item['qty']})"
+                                  .text
+                                  .fontFamily(semibold)
+                                  .size(16)
+                                  .make(),
+                              subtitle: Row(
+                                children: [
+                                  IconButton(
+                                    icon: Icon(Icons.remove, color: redColor),
+                                    onPressed: () {
+                                      controller.decrementQuantity(
+                                          item.id, item['qty']);
+                                    },
+                                  ),
+                                  Text("${item['qty']}")
+                                      .text
+                                      .fontFamily(semibold)
+                                      .size(16)
+                                      .make(),
+                                  IconButton(
+                                    icon: Icon(Icons.add, color: redColor),
+                                    onPressed: () {
+                                      controller.incrementQuantity(
+                                          item.id, item['qty']);
+                                    },
+                                  ),
+                                ],
+                              ),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  "${item['tprice']}"
                                       .numCurrency
                                       .text
                                       .color(redColor)
                                       .fontFamily(semibold)
                                       .make(),
-                                  trailing: Icon(Icons.delete, color: redColor)
-                                      .onTap(() {
-                                    FirestoreServices.deleteDocument(
-                                        data[index].id);
+                                  Icon(Icons.delete, color: redColor).onTap(() {
+                                    FirestoreServices.deleteDocument(item.id);
                                   }),
-                                );
-                              })),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -105,16 +130,7 @@ class CartScreen extends StatelessWidget {
                           .width(context.screenWidth - 60)
                           .roundedSM
                           .make(),
-                      .10.heightBox,
-                      // SizedBox(
-                      //   width: context.screenWidth - 60,
-                      //   child: ourButton(
-                      //     color: redColor,
-                      //     onPress: () {},
-                      //     textColor: whiteColor,
-                      //     title: "Procees to Shipping",
-                      //   ),
-                      // ),
+                      SizedBox(height: 10),
                     ],
                   ),
                 );

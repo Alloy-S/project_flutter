@@ -6,8 +6,7 @@ import 'package:get/get.dart';
 class CartController extends GetxController {
   var totalP = 0.obs;
 
-  //Text controllers for shipping data
-
+  // Text controllers for shipping data
   var addressController = TextEditingController();
   var cityController = TextEditingController();
   var stateController = TextEditingController();
@@ -67,5 +66,31 @@ class CartController extends GetxController {
     }
 
     print(products);
+  }
+
+  void incrementQuantity(String docId, int currentQty) {
+    var item = productSnapshot.firstWhere((element) => element.id == docId);
+    var currentPrice = item['tprice'] ~/
+        item[
+            'qty']; 
+    firestore.collection(cartCollection).doc(docId).update({
+      'qty': currentQty + 1,
+      'tprice': (currentQty + 1) *
+          currentPrice, 
+    });
+  }
+
+  void decrementQuantity(String docId, int currentQty) {
+    if (currentQty > 1) {
+      var item = productSnapshot.firstWhere((element) => element.id == docId);
+      var currentPrice = item['tprice'] ~/
+          item[
+              'qty']; 
+      firestore.collection(cartCollection).doc(docId).update({
+        'qty': currentQty - 1,
+        'tprice': (currentQty - 1) *
+            currentPrice, 
+      });
+    }
   }
 }

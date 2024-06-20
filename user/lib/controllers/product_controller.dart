@@ -47,8 +47,30 @@ class ProductController extends GetxController {
   calculateTotalPrice(price) {
     totalPrice.value = price * quantity.value;
   }
+  
+addToCart({title, img, sellername, color, qty, tprice, context}) async {
+  // Get the current user's cart items
+  var cartSnapshot = await firestore.collection(cartCollection)
+    .where('added_by', isEqualTo: currentUser!.uid)
+    .where('title', isEqualTo: title)
+    .where('color', isEqualTo: color)
+    .where('sellername', isEqualTo: sellername)
+    .get();
 
-  addToCart({title, img, sellername, color, qty, tprice, context}) async {
+  if (cartSnapshot.docs.isNotEmpty) {
+    // If the item already exists in the cart, update its quantity and total price
+    var existingItem = cartSnapshot.docs.first;
+    var newQty = existingItem['qty'] + qty;
+    var newTprice = existingItem['tprice'] + tprice;
+
+    await firestore.collection(cartCollection).doc(existingItem.id).update({
+      'qty': newQty,
+      'tprice': newTprice,
+    }).catchError((onError) {
+      VxToast.show(context, msg: onError.toString());
+    });
+  } else {
+    // If the item does not exist in the cart, add a new item
     await firestore.collection(cartCollection).doc().set({
       'title': title,
       'img': img,
@@ -61,6 +83,7 @@ class ProductController extends GetxController {
       VxToast.show(context, msg: onError.toString());
     });
   }
+}
 
   resetValue() {
     totalPrice.value = 0;
