@@ -43,7 +43,8 @@ class ProductController extends GetxController {
     totalPrice.value = price * quantity.value;
   }
 
-  addToCart({title, img, sellername, color, qty, tprice, context}) async {
+  addToCart(
+      {title, img, sellername, color, qty, tprice, vendorId, context}) async {
     // Get the current user's cart items
     var cartSnapshot = await firestore
         .collection(cartCollection)
@@ -64,29 +65,32 @@ class ProductController extends GetxController {
       }).catchError((onError) {
         VxToast.show(context, msg: onError.toString());
       });
+      VxToast.show(context, msg: "Added To Cart");
     } else {
       // If the item does not exist in the cart, add a new item
-      addToCart(
-          {title,
-          img,
-          sellername,
-          color,
-          qty,
-          tprice,
-          context,
-          vendorID}) async {
-        await firestore.collection(cartCollection).doc().set({
-          'title': title,
-          'img': img,
-          'sellername': sellername,
-          'qty': qty,
-          'vendor_id': vendorID,
-          'tprice': tprice,
-          'added_by': currentUser!.uid
-        }).catchError((onError) {
-          VxToast.show(context, msg: onError.toString());
-        });
-      }
+      // addToCart({
+      //   title,
+      //   img,
+      //   sellername,
+      //   color,
+      //   qty,
+      //   tprice,
+      //   context,
+      //   vendorID,
+      // }) async {
+      await firestore.collection(cartCollection).doc().set({
+        'title': title,
+        'img': img,
+        'sellername': sellername,
+        'qty': qty,
+        'vendor_id': vendorId,
+        'tprice': tprice,
+        'added_by': currentUser!.uid,
+      }).catchError((onError) {
+        VxToast.show(context, msg: onError.toString());
+      });
+      // }
+      VxToast.show(context, msg: "Added To Cart");
     }
   }
 

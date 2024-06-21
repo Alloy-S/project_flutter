@@ -298,8 +298,8 @@ class ItemDetails extends StatelessWidget {
                                 qty: controller.quantity.value,
                                 sellername: data['p_seller'],
                                 title: data['p_name'],
+                                vendorId: data['vendor_id'],
                                 tprice: controller.totalPrice.value);
-                            VxToast.show(context, msg: "Added To Cart");
                           }
                         : null,
                     textColor: whiteColor,
