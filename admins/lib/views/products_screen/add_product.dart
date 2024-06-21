@@ -28,6 +28,7 @@ class AddProduct extends StatelessWidget {
                       controller.isloading(true);
                       await controller.uploadImage();
                       await controller.uploadProduct(context);
+                      controller.pnameController.text = '';
                       Get.back();
                     },
                     child: boldText(text: save, color: white),
@@ -66,6 +67,12 @@ class AddProduct extends StatelessWidget {
                   controller: controller.pquantityController,
                 ),
                 10.heightBox,
+                customTextField(
+                  hint: "eg. 1000gr",
+                  label: "Weight",
+                  controller: controller.pweightController,
+                ),
+                10.heightBox,
                 productDropdown('Category', controller.categoryList,
                     controller.categoryValue, controller),
                 10.heightBox,
@@ -97,38 +104,38 @@ class AddProduct extends StatelessWidget {
                 normalText(
                     text: "First image will be your display image",
                     color: lightGrey),
-                const Divider(color: white),
-                10.heightBox,
-                boldText(text: "Choose product colors"),
-                10.heightBox,
-                Obx(
-                  () => Wrap(
-                    spacing: 8.0,
-                    runSpacing: 8.0,
-                    children: List.generate(
-                      9,
-                      (index) => Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          VxBox()
-                              .color(Vx.randomPrimaryColor)
-                              .roundedFull
-                              .size(65, 65)
-                              .make()
-                              .onTap(() {
-                            controller.selectedColorIndex.value = index;
-                          }),
-                          controller.selectedColorIndex.value == index
-                              ? const Icon(
-                                  Icons.done,
-                                  color: white,
-                                )
-                              : const SizedBox(),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                // const Divider(color: white),
+                // 10.heightBox,
+                // boldText(text: "Choose product colors"),
+                // 10.heightBox,
+                // Obx(
+                //   () => Wrap(
+                //     spacing: 8.0,
+                //     runSpacing: 8.0,
+                //     children: List.generate(
+                //       9,
+                //       (index) => Stack(
+                //         alignment: Alignment.center,
+                //         children: [
+                //           VxBox()
+                //               .color(Vx.randomPrimaryColor)
+                //               .roundedFull
+                //               .size(65, 65)
+                //               .make()
+                //               .onTap(() {
+                //             controller.selectedColorIndex.value = index;
+                //           }),
+                //           controller.selectedColorIndex.value == index
+                //               ? const Icon(
+                //                   Icons.done,
+                //                   color: white,
+                //                 )
+                //               : const SizedBox(),
+                //         ],
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),

@@ -29,6 +29,11 @@ class ProfileController extends GetxController {
   var shopWebsiteControler = TextEditingController();
   var shopDescControler = TextEditingController();
 
+  getProfileInfo() async {
+    final result = await firestore.collection(vendorsCollection).where('id', isEqualTo: currentUser!.uid).get();
+    print(result);
+  }
+
   changeImage(context) async {
     try {
       final img = await ImagePicker()
@@ -65,7 +70,16 @@ class ProfileController extends GetxController {
     }).catchError((error) {});
   }
 
-  updateShop({shopName, shopAddress, shopMobile, shopWebsite, shopDesc}) async {
+  updateShop(
+      {shopName,
+      shopAddress,
+      shopMobile,
+      shopWebsite,
+      shopDesc,
+      province,
+      provinceId,
+      kota,
+      kotaId}) async {
     var store = firestore.collection(vendorsCollection).doc(currentUser!.uid);
     await store.set({
       'shop_name': shopName,
@@ -73,6 +87,10 @@ class ProfileController extends GetxController {
       'shop_mobile': shopMobile,
       'shop_website': shopWebsite,
       'shop_desc': shopDesc,
+      'shop_province': province,
+      'shop_province_id': provinceId,
+      'shop_kota': kota,
+      'shop_kota_id': kotaId,
     }, SetOptions(merge: true));
     isloading(false);
   }

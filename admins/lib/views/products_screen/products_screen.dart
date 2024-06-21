@@ -21,6 +21,7 @@ class ProductsScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: purpleColor,
         onPressed: () async {
+          controller.resetController();
           await controller.getCategories();
           controller.populateCategoryList();
 

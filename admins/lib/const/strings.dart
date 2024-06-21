@@ -29,6 +29,7 @@ const appname = "eMart Admin App",
     name = "Username",
     confirmPassword = "Confirm Password",
     chats = "Chats",
+    shipping = "shipping",
     credit = "Project AMBW";
 
 const nameHint = "eg. Vendor Name",

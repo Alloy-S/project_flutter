@@ -18,6 +18,7 @@ class ProductsController extends GetxController {
   var pdescController = TextEditingController();
   var ppriceController = TextEditingController();
   var pquantityController = TextEditingController();
+  var pweightController = TextEditingController();
 
   var categoryList = <String>[].obs;
   var subcategoryList = <String>[].obs;
@@ -29,11 +30,30 @@ class ProductsController extends GetxController {
   var subcategoryValue = ''.obs;
   var selectedColorIndex = 0.obs;
 
-  getCategories() async {
+  resetController() {
+    pnameController = TextEditingController();
+    pdescController = TextEditingController();
+    ppriceController = TextEditingController();
+    pquantityController = TextEditingController();
+    pweightController = TextEditingController();
+
+    categoryList = <String>[].obs;
+    subcategoryList = <String>[].obs;
+    category = [];
+    pImagesLink = [];
+    pImagesList = RxList<dynamic>.generate(3, (index) => null);
+
+    categoryValue = ''.obs;
+    subcategoryValue = ''.obs;
+    selectedColorIndex = 0.obs;
+  }
+
+  Future<List<Category>> getCategories() async {
     category.clear();
     var data = await rootBundle.loadString("lib/services/category_model.json");
     var cat = categoryModelFromJson(data);
     category = cat.categories;
+    return category;
     // populateSubCategory(cat);
   }
 
@@ -90,13 +110,13 @@ class ProductsController extends GetxController {
       'is_featured': false,
       'p_category': categoryValue.value,
       'p_subcategory': subcategoryValue.value,
-      'p_colors': FieldValue.arrayUnion([Colors.red.value, Colors.brown.value]),
       'p_imgs': FieldValue.arrayUnion(pImagesLink),
       'p_wishlist': FieldValue.arrayUnion([]),
       'p_desc': pdescController.text,
       'p_name': pnameController.text,
       'p_price': ppriceController.text,
       'p_quantity': pquantityController.text,
+      'p_weight': pweightController.text,
       'p_seller': Get.find<HomeController>().username,
       'p_rating': "5.0",
       'vendor_id': currentUser!.uid,
@@ -107,7 +127,6 @@ class ProductsController extends GetxController {
     VxToast.show(context, msg: "Product uploaded");
   }
 
-
   addFeatured(docId) async {
     await firestore.collection(productsCollection).doc(docId).set({
       'is_featured': true,
@@ -116,13 +135,20 @@ class ProductsController extends GetxController {
   }
 
   removeFeatured(docId) async {
-    await firestore.collection(productsCollection).doc(docId).set({
-      'is_featured': false,
-      'featured_id': ''
-    }, SetOptions(merge: true));
+    await firestore.collection(productsCollection).doc(docId).set(
+        {'is_featured': false, 'featured_id': ''}, SetOptions(merge: true));
   }
 
-  updateProduct({docId, category, subcategory, desc, name, price, quantity, context}) async {
+  updateProduct(
+      {docId,
+      category,
+      subcategory,
+      desc,
+      name,
+      price,
+      quantity,
+      weight,
+      context}) async {
     var store = firestore.collection(productsCollection).doc(docId);
     store.set({
       'p_category': category,
@@ -132,6 +158,7 @@ class ProductsController extends GetxController {
       'p_name': name,
       'p_price': price,
       'p_quantity': quantity,
+      'p_weight': weight,
     }, SetOptions(merge: true));
     isloading(false);
     VxToast.show(context, msg: "Product uploaded");
@@ -140,7 +167,4 @@ class ProductsController extends GetxController {
   removeProduct(docId) async {
     await firestore.collection(productsCollection).doc(docId).delete();
   }
-
-
-
 }

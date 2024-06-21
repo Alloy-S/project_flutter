@@ -28,10 +28,12 @@ class _EditProductState extends State<EditProduct> {
     controller.pdescController.text = widget.data['p_desc'];
     controller.ppriceController.text = widget.data['p_price'];
     controller.pquantityController.text = widget.data['p_quantity'];
+    controller.pweightController.text = widget.data['p_weight'];
     controller.categoryValue.value = widget.data['p_category'];
     controller.populateSubCategory(controller.categoryValue.value);
     controller.subcategoryValue.value = widget.data['p_subcategory'];
     controller.pImagesLink = widget.data['p_imgs'];
+    
   }
 
   @override
@@ -59,6 +61,7 @@ class _EditProductState extends State<EditProduct> {
                           quantity: controller.pquantityController.text,
                           category: controller.categoryValue.value,
                           subcategory: controller.subcategoryValue.value,
+                          weight: controller.pweightController.text,
                           context: context);
                       Get.back();
                     },
@@ -96,6 +99,12 @@ class _EditProductState extends State<EditProduct> {
                   hint: "eg. 20",
                   label: "Quantity",
                   controller: controller.pquantityController,
+                ),
+                10.heightBox,
+                customTextField(
+                  hint: "eg. 1000gr",
+                  label: "Weight",
+                  controller: controller.pweightController,
                 ),
                 10.heightBox,
                 productDropdown('Category', controller.categoryList,
@@ -147,38 +156,38 @@ class _EditProductState extends State<EditProduct> {
                 normalText(
                     text: "First image will be your display image",
                     color: lightGrey),
-                const Divider(color: white),
-                10.heightBox,
-                boldText(text: "Choose product colors"),
-                10.heightBox,
-                Obx(
-                  () => Wrap(
-                    spacing: 8.0,
-                    runSpacing: 8.0,
-                    children: List.generate(
-                      9,
-                      (index) => Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          VxBox()
-                              .color(Vx.randomPrimaryColor)
-                              .roundedFull
-                              .size(65, 65)
-                              .make()
-                              .onTap(() {
-                            controller.selectedColorIndex.value = index;
-                          }),
-                          controller.selectedColorIndex.value == index
-                              ? const Icon(
-                                  Icons.done,
-                                  color: white,
-                                )
-                              : const SizedBox(),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                // const Divider(color: white),
+                // 10.heightBox,
+                // boldText(text: "Choose product colors"),
+                // 10.heightBox,
+                // Obx(
+                //   () => Wrap(
+                //     spacing: 8.0,
+                //     runSpacing: 8.0,
+                //     children: List.generate(
+                //       9,
+                //       (index) => Stack(
+                //         alignment: Alignment.center,
+                //         children: [
+                //           VxBox()
+                //               .color(Vx.randomPrimaryColor)
+                //               .roundedFull
+                //               .size(65, 65)
+                //               .make()
+                //               .onTap(() {
+                //             controller.selectedColorIndex.value = index;
+                //           }),
+                //           controller.selectedColorIndex.value == index
+                //               ? const Icon(
+                //                   Icons.done,
+                //                   color: white,
+                //                 )
+                //               : const SizedBox(),
+                //         ],
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
