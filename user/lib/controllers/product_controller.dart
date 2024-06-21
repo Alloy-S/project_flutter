@@ -9,7 +9,6 @@ import 'package:get/get.dart';
 
 class ProductController extends GetxController {
   var quantity = 0.obs;
-  var colorIndex = 0.obs;
   var totalPrice = 0.obs;
 
   var subcat = [];
@@ -26,10 +25,6 @@ class ProductController extends GetxController {
     for (var e in s[0].subcategory) {
       subcat.add(e);
     }
-  }
-
-  changeColorIndex(int index) {
-    colorIndex.value = index;
   }
 
   increaseQuantity(totalQuantity) {
@@ -53,7 +48,6 @@ addToCart({title, img, sellername, color, qty, tprice, context}) async {
   var cartSnapshot = await firestore.collection(cartCollection)
     .where('added_by', isEqualTo: currentUser!.uid)
     .where('title', isEqualTo: title)
-    .where('color', isEqualTo: color)
     .where('sellername', isEqualTo: sellername)
     .get();
 
@@ -75,7 +69,6 @@ addToCart({title, img, sellername, color, qty, tprice, context}) async {
       'title': title,
       'img': img,
       'sellername': sellername,
-      'color': color,
       'qty': qty,
       'tprice': tprice,
       'added_by': currentUser!.uid
@@ -88,7 +81,6 @@ addToCart({title, img, sellername, color, qty, tprice, context}) async {
   resetValue() {
     totalPrice.value = 0;
     quantity.value = 0;
-    colorIndex.value = 0;
   }
 
   addToWishList(docId, context) async {

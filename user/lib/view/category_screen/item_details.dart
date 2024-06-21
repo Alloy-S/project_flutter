@@ -136,49 +136,10 @@ class ItemDetails extends StatelessWidget {
                         .color(textfieldGrey)
                         .make(),
 
-                    //color section
                     20.heightBox,
                     Obx(
                       () => Column(
                         children: [
-                          Row(
-                            children: [
-                              SizedBox(
-                                width: 100,
-                                child:
-                                    "Color: ".text.color(textfieldGrey).make(),
-                              ),
-                              Row(
-                                children: List.generate(
-                                    data['p_colors'].length,
-                                    (index) => Stack(
-                                          alignment: Alignment.center,
-                                          children: [
-                                            VxBox()
-                                                .size(40, 40)
-                                                .roundedFull
-                                                .color(Color(
-                                                        data['p_colors'][index])
-                                                    .withOpacity(1.0))
-                                                .margin(
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 4))
-                                                .make()
-                                                .onTap(() {
-                                              controller
-                                                  .changeColorIndex(index);
-                                            }),
-                                            Visibility(
-                                                visible: index ==
-                                                    controller.colorIndex.value,
-                                                child: const Icon(Icons.done,
-                                                    color: Colors.white))
-                                          ],
-                                        )),
-                              ),
-                            ],
-                          ).box.padding(const EdgeInsets.all(8)).make(),
-
                           //total row
                           Row(
                             children: [
@@ -332,8 +293,6 @@ class ItemDetails extends StatelessWidget {
                     onPress: controller.quantity.value > 0
                         ? () {
                             controller.addToCart(
-                                color: data['p_colors']
-                                    [controller.colorIndex.value],
                                 context: context,
                                 img: data['p_imgs'][0],
                                 qty: controller.quantity.value,
