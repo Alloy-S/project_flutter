@@ -1,7 +1,7 @@
-class RajaongkirProvince {
+class RajaongkirKota {
     Rajaongkir rajaongkir;
 
-    RajaongkirProvince({
+    RajaongkirKota({
         required this.rajaongkir,
     });
 

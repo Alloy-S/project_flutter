@@ -1,7 +1,10 @@
 import 'package:admins/const/const.dart';
 import 'package:admins/services/raja_ongkir_service.dart';
+import 'package:admins/views/profile_screen/shipping_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:admins/views/widgets/custom_textfield.dart';
+import 'package:get/get.dart';
 
 class ProvinceScreen extends StatefulWidget {
   const ProvinceScreen({super.key});
@@ -13,10 +16,13 @@ class ProvinceScreen extends StatefulWidget {
 class _ProvinceScreenState extends State<ProvinceScreen> {
   var strProvinceId = '';
   var strKotaId = '';
+  var weightController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     // List<Result> dataProvince = RajaOngkirService.fetchProvince();
     return Scaffold(
+      backgroundColor: purpleColor,
       body: Column(
         children: [
           20.heightBox,
@@ -61,6 +67,24 @@ class _ProvinceScreenState extends State<ProvinceScreen> {
               },
             ),
           ),
+          10.heightBox,
+          customTextField(
+              label: 'weight',
+              hint: 'eg. 1000gr',
+              controller: weightController),
+          10.heightBox,
+          TextButton(
+              onPressed: () {
+                var data = RajaOngkirService.checkAllCost(
+                  origin: "23",
+                  destination: "24",
+                  weight: "1000",
+                );
+
+
+                Get.to(() => ShippingDetail(data: data,));
+              },
+              child: 'Calculate'.text.color(white).make()),
         ],
       ),
     );

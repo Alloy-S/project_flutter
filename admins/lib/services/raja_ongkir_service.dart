@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'package:admins/const/const.dart';
 import 'package:admins/models/rajaongkir_kota_model.dart';
 import 'package:admins/models/rajaongkir_province_model.dart';
+import 'package:admins/models/rajaongkir_cost_model.dart';
 import 'package:http/http.dart' as http;
 
 class RajaOngkirService {
@@ -23,7 +25,7 @@ class RajaOngkirService {
         province: e['province'],
       );
     }).toList();
-    
+
     // for (Result item in hasil) {
     //   print('${item.provinceId}, ${item.province}');
     // }
@@ -41,13 +43,12 @@ class RajaOngkirService {
     final result = json as Map<String, dynamic>;
     final hasil = result['rajaongkir']['results'].map((e) {
       return ResultKota(
-        cityId: e['city_id'],
-        provinceId: e['province_id'],
-        province: e['province'],
-        type: e['type'],
-        cityName: e['city_name'],
-        postalCode: e['postal_code']
-      );
+          cityId: e['city_id'],
+          provinceId: e['province_id'],
+          province: e['province'],
+          type: e['type'],
+          cityName: e['city_name'],
+          postalCode: e['postal_code']);
     }).toList();
 
     // for (ResultKota item in hasil) {
@@ -55,5 +56,40 @@ class RajaOngkirService {
     // }
 
     return hasil;
+  }
+
+  static checkAllCost({origin, destination, weight}) async {
+    const url = 'https://api.rajaongkir.com/starter/cost';
+    final uri = Uri.parse(url);
+    var allCost;
+    for (var item in courierAvailable) {
+      
+      var response = await http.post(uri, headers: {
+        'key': keyAPI
+      }, body: {
+        'origin': origin,
+        'destination': destination,
+        'weight': weight,
+        'courier': item,
+      });
+      final body = response.body;
+      final json = jsonDecode(body);
+      
+      // final result = json as Map<String, dynamic>;
+      final hasil = RajaongkirCost.fromJson(json);
+      // print(hasil.rajaongkir.results);
+      for (Result2 item in hasil.rajaongkir!.results) {
+        allCost.add(item);
+        // for (ResultCost cost in item.costs) {
+        //   print(cost.description);
+        // }
+          
+      }
+      // final hasil = result['rajaongkir']['results'].map((e) {
+      //   // return Raja
+      // }).toList();
+    }
+
+    return allCost;
   }
 }
