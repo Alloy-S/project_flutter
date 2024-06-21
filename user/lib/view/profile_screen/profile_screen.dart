@@ -4,11 +4,16 @@ import 'package:emart_app/controllers/auth_controller.dart';
 import 'package:emart_app/controllers/profile_controller.dart';
 import 'package:emart_app/services/firestore_services.dart';
 import 'package:emart_app/view/auth_screen/login_screen.dart';
+import 'package:emart_app/view/chat_screen/messaging_screen.dart';
+import 'package:emart_app/view/orders_screen/orders_screen.dart';
 import 'package:emart_app/view/profile_screen/components/details_cart.dart';
 import 'package:emart_app/view/profile_screen/edit_profile_screen.dart';
 import 'package:emart_app/view/splash_screen/splash_screen.dart';
+import 'package:emart_app/view/wishlist_screen/wishlist_screen.dart';
 import 'package:emart_app/widgets_common/bg_widget.dart';
+import 'package:emart_app/widgets_common/loadingIndicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -43,7 +48,7 @@ class ProfileScreen extends StatelessWidget {
                                 alignment: Alignment.topRight,
                                 child: Icon(Icons.edit, color: whiteColor))
                             .onTap(() {
-                              controller.nameController.text = data['name'];
+                          controller.nameController.text = data['name'];
                           Get.to(() => EditProfileScreen(data: data));
                         }),
                       ),
@@ -54,21 +59,19 @@ class ProfileScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Row(
                           children: [
-                            data['imageUrl'] == ''?
-
-                            Image.asset(imgProfile2,
-                                    width: 100, fit: BoxFit.cover)
-                                .box
-                                .roundedFull
-                                .clip(Clip.antiAlias)
-                                .make()
-                                :
-                                Image.network(data['imageUrl'],
-                                width: 100, fit: BoxFit.cover)
-                                .box
-                                .roundedFull
-                                .clip(Clip.antiAlias)
-                                .make(),
+                            data['imageUrl'] == ''
+                                ? Image.asset(imgProfile2,
+                                        width: 100, fit: BoxFit.cover)
+                                    .box
+                                    .roundedFull
+                                    .clip(Clip.antiAlias)
+                                    .make()
+                                : Image.network(data['imageUrl'],
+                                        width: 100, fit: BoxFit.cover)
+                                    .box
+                                    .roundedFull
+                                    .clip(Clip.antiAlias)
+                                    .make(),
                             10.widthBox,
                             Expanded(
                                 child: Column(
@@ -100,25 +103,56 @@ class ProfileScreen extends StatelessWidget {
                       ),
 
                       20.heightBox,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          detailsCard(
-                              count: data['cart_count'],
-                              title: "in cart",
-                              width: context.screenWidth / 3.4),
-                          detailsCard(
-                              count: data['wishlist_count'],
-                              title: "in wishlist",
-                              width: context.screenWidth / 3.4),
-                          detailsCard(
-                              count: data['order_count'],
-                              title: "orders",
-                              width: context.screenWidth / 3.4),
-                        ],
+
+                      FutureBuilder(
+                        future: FirestoreServices.getCounts(),
+                        builder:
+                            (BuildContext context, AsyncSnapshot snapshot) {
+                          if (!snapshot.hasData) {
+                            return Center(child: loadingIndicator());
+                          } else {
+                            var countData = snapshot.data;
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                detailsCard(
+                                    count: countData[0].toString(),
+                                    title: "in your cart",
+                                    width: context.screenWidth / 3.3),
+                                detailsCard(
+                                    count: countData[1].toString(),
+                                    title: "in your wishlist",
+                                    width: context.screenWidth / 3.3),
+                                detailsCard(
+                                    count: countData[2].toString(),
+                                    title: "your orders",
+                                    width: context.screenWidth / 3.3),
+                              ],
+                            );
+                          }
+                        },
                       ),
 
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      //   children: [
+                      //     detailsCard(
+                      //         count: data['cart_count'],
+                      //         title: "in cart",
+                      //         width: context.screenWidth / 3.4),
+                      //     detailsCard(
+                      //         count: data['wishlist_count'],
+                      //         title: "in wishlist",
+                      //         width: context.screenWidth / 3.4),
+                      //     detailsCard(
+                      //         count: data['order_count'],
+                      //         title: "orders",
+                      //         width: context.screenWidth / 3.4),
+                      //   ],
+                      // ),
+
                       //button sec
+
                       ListView.separated(
                         shrinkWrap: true,
                         separatorBuilder: (context, index) {
@@ -129,6 +163,19 @@ class ProfileScreen extends StatelessWidget {
                         itemCount: profileButtonList.length,
                         itemBuilder: (BuildContext context, int index) {
                           return ListTile(
+                            onTap: () {
+                              switch (index) {
+                                case 0:
+                                  Get.to(() => const OrdersScreen());
+                                  break;
+                                case 1:
+                                  Get.to(() => const WishlistScreen());
+                                  break;
+                                case 2:
+                                  Get.to(() => const MessagesScreen());
+                                  break;
+                              }
+                            },
                             leading: Image.asset(profileButtonsIcon[index],
                                 width: 22),
                             title: profileButtonList[index]
