@@ -216,70 +216,70 @@ class ItemDetails extends StatelessWidget {
                     10.heightBox,
                     "${data['p_desc']}".text.color(darkFontGrey).make(),
 
-                    10.heightBox,
+                    // 10.heightBox,
 
-                    ListView(
-                      physics: BouncingScrollPhysics(),
-                      shrinkWrap: true,
-                      children: List.generate(
-                          ItemDetailsButtonList.length,
-                          (index) => ListTile(
-                                title: ItemDetailsButtonList[index]
-                                    .text
-                                    .fontFamily(semibold)
-                                    .color(darkFontGrey)
-                                    .make(),
-                                trailing: const Icon(Icons.arrow_forward),
-                              )),
-                    ),
+                    // ListView(
+                    //   physics: BouncingScrollPhysics(),
+                    //   shrinkWrap: true,
+                    //   children: List.generate(
+                    //       ItemDetailsButtonList.length,
+                    //       (index) => ListTile(
+                    //             title: ItemDetailsButtonList[index]
+                    //                 .text
+                    //                 .fontFamily(semibold)
+                    //                 .color(darkFontGrey)
+                    //                 .make(),
+                    //             trailing: const Icon(Icons.arrow_forward),
+                    //           )),
+                    // ),
 
-                    20.heightBox,
+                    // 20.heightBox,
                     //product may like
 
-                    productsyoumaylike.text
-                        .fontFamily(bold)
-                        .size(16)
-                        .color(darkFontGrey)
-                        .make(),
+                    // productsyoumaylike.text
+                    //     .fontFamily(bold)
+                    //     .size(16)
+                    //     .color(darkFontGrey)
+                    //     .make(),
 
-                    10.heightBox,
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: List.generate(
-                            6,
-                            (index) => Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Image.asset(
-                                      imgP1,
-                                      width: 150,
-                                      fit: BoxFit.cover,
-                                    ),
-                                    10.heightBox,
-                                    "Laptop 4GB/64GB"
-                                        .text
-                                        .fontFamily(semibold)
-                                        .color(darkFontGrey)
-                                        .make(),
-                                    10.heightBox,
-                                    "\$600"
-                                        .text
-                                        .color(redColor)
-                                        .fontFamily(bold)
-                                        .size(16)
-                                        .make(),
-                                    10.heightBox,
-                                  ],
-                                )
-                                    .box
-                                    .white
-                                    .margin(EdgeInsets.symmetric(horizontal: 4))
-                                    .roundedSM
-                                    .padding(const EdgeInsets.all(8))
-                                    .make()),
-                      ),
-                    ),
+                    // 10.heightBox,
+                    // SingleChildScrollView(
+                    //   scrollDirection: Axis.horizontal,
+                    //   child: Row(
+                    //     children: List.generate(
+                    //         6,
+                    //         (index) => Column(
+                    //               crossAxisAlignment: CrossAxisAlignment.start,
+                    //               children: [
+                    //                 Image.asset(
+                    //                   imgP1,
+                    //                   width: 150,
+                    //                   fit: BoxFit.cover,
+                    //                 ),
+                    //                 10.heightBox,
+                    //                 "Laptop 4GB/64GB"
+                    //                     .text
+                    //                     .fontFamily(semibold)
+                    //                     .color(darkFontGrey)
+                    //                     .make(),
+                    //                 10.heightBox,
+                    //                 "\$600"
+                    //                     .text
+                    //                     .color(redColor)
+                    //                     .fontFamily(bold)
+                    //                     .size(16)
+                    //                     .make(),
+                    //                 10.heightBox,
+                    //               ],
+                    //             )
+                    //                 .box
+                    //                 .white
+                    //                 .margin(EdgeInsets.symmetric(horizontal: 4))
+                    //                 .roundedSM
+                    //                 .padding(const EdgeInsets.all(8))
+                    //                 .make()),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
