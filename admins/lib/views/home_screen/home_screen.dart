@@ -77,7 +77,7 @@ class HomeScreen extends StatelessWidget {
                                         text: "${productData[index]['p_name']}",
                                         color: fontGrey),
                                     subtitle: normalText(
-                                        text: "\$${productData[index]['p_price']}",
+                                        text: "IDR ${productData[index]['p_price']}",
                                         color: darkGrey),
                                   ),
                           ),
