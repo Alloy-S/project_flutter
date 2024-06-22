@@ -74,15 +74,15 @@ class _ProvinceScreenState extends State<ProvinceScreen> {
               controller: weightController),
           10.heightBox,
           TextButton(
-              onPressed: () {
-                var data = RajaOngkirService.checkAllCost(
-                  origin: "23",
-                  destination: "24",
-                  weight: "1000",
-                );
+              onPressed: ()  {
+                // var data = await RajaOngkirService.checkAllCost(
+                //   origin: "23",
+                //   destination: "24",
+                //   weight: "1000",
+                // );
 
 
-                Get.to(() => ShippingDetail(data: data,));
+                Get.to(() => ShippingDetail());
               },
               child: 'Calculate'.text.color(white).make()),
         ],

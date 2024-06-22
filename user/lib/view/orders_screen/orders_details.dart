@@ -1,10 +1,11 @@
 import 'package:emart_app/consts/consts.dart';
-import 'package:emart_app/view/chat_screen/components/sender_bubble.dart';
+import 'package:emart_app/view/orders_screen/components/order_courier_details.dart';
+// import 'package:emart_app/view/chat_screen/components/sender_bubble.dart';
 import 'package:emart_app/view/orders_screen/components/order_place_details.dart';
 import 'package:emart_app/view/orders_screen/components/order_status.dart';
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 import 'package:intl/intl.dart ' as intl;
-import 'package:get/get.dart';
+// import 'package:get/get.dart';
 
 class OrderDetails extends StatelessWidget {
   final dynamic data;
@@ -67,7 +68,7 @@ class OrderDetails extends StatelessWidget {
                     title2: "Shipping Method",
                   ),
                   orderPlaceDetails(
-                    d1: "Unpaid",
+                    d1: "Paid",
                     d2: "Order Placed",
                     title1: "Payment Status",
                     title2: "Delivery Status",
@@ -97,6 +98,13 @@ class OrderDetails extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              "Total Product".text.fontFamily(semibold).make(),
+                              "${data['total_product']}"
+                                  .text
+                                  .color(redColor)
+                                  .fontFamily(bold)
+                                  .make(),
+                                  10.heightBox,
                               "Total Amount".text.fontFamily(semibold).make(),
                               "${data['total_amount']}"
                                   .text
@@ -109,6 +117,22 @@ class OrderDetails extends StatelessWidget {
                       ],
                     ),
                   ),
+                  Divider(),
+                  orderCourierDetails(
+                      title1: 'Courier Name',
+                      title2: 'Harga',
+                      d1: data['courier'][0]['name'],
+                      d2: data['courier'][0]['value']),
+                  orderCourierDetails(
+                      title1: 'Service',
+                      title2: 'Description',
+                      d1: data['courier'][0]['service'],
+                      d2: data['courier'][0]['description']),
+                  orderCourierDetails(
+                      title1: 'ETD',
+                      title2: '',
+                      d1: data['courier'][0]['etd'],
+                      d2: ''),
                 ],
               ),
               // box.outerShadowMd.white.make(),
@@ -132,7 +156,7 @@ class OrderDetails extends StatelessWidget {
                           title1: data['orders'][index]['title'],
                           title2: data['orders'][index]['tprice'],
                           d1: "${data['orders'][index]['qty']}x",
-                          d2: "Refundable"),
+                          d2: ""),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Container(

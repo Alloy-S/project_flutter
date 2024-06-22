@@ -11,5 +11,5 @@ const productsCollection = "products";
 const cartCollection = 'cart';
 const chatsCollection = 'chats';
 const messagesCollection = 'messages';
-
+const vendorsCollection = 'vendors';
 const ordersCollection = 'orders';

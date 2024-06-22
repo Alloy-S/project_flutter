@@ -44,7 +44,7 @@ class ProductController extends GetxController {
   }
 
   addToCart(
-      {title, img, sellername, color, qty, tprice, vendorId, context}) async {
+      {title, img, sellername, color, qty, tprice, weight, vendorId, context}) async {
     // Get the current user's cart items
     var cartSnapshot = await firestore
         .collection(cartCollection)
@@ -58,10 +58,12 @@ class ProductController extends GetxController {
       var existingItem = cartSnapshot.docs.first;
       var newQty = existingItem['qty'] + qty;
       var newTprice = existingItem['tprice'] + tprice;
+      var newWeight = int.parse(existingItem['weight']) + int.parse(weight);
 
       await firestore.collection(cartCollection).doc(existingItem.id).update({
         'qty': newQty,
         'tprice': newTprice,
+        'weight': newWeight.toString(),
       }).catchError((onError) {
         VxToast.show(context, msg: onError.toString());
       });
@@ -78,6 +80,7 @@ class ProductController extends GetxController {
       //   context,
       //   vendorID,
       // }) async {
+      weight = (int.parse(weight) * qty).toString();
       await firestore.collection(cartCollection).doc().set({
         'title': title,
         'img': img,
@@ -86,6 +89,7 @@ class ProductController extends GetxController {
         'vendor_id': vendorId,
         'tprice': tprice,
         'added_by': currentUser!.uid,
+        'weight': weight,
       }).catchError((onError) {
         VxToast.show(context, msg: onError.toString());
       });

@@ -293,13 +293,15 @@ class ItemDetails extends StatelessWidget {
                     onPress: controller.quantity.value > 0
                         ? () {
                             controller.addToCart(
-                                context: context,
-                                img: data['p_imgs'][0],
-                                qty: controller.quantity.value,
-                                sellername: data['p_seller'],
-                                title: data['p_name'],
-                                vendorId: data['vendor_id'],
-                                tprice: controller.totalPrice.value);
+                              context: context,
+                              img: data['p_imgs'][0],
+                              qty: controller.quantity.value,
+                              sellername: data['p_seller'],
+                              title: data['p_name'],
+                              vendorId: data['vendor_id'],
+                              tprice: controller.totalPrice.value,
+                              weight: data['p_weight'],
+                            );
                           }
                         : null,
                     textColor: whiteColor,

@@ -1,6 +1,6 @@
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/consts/firebase_const.dart';
-import 'package:get/get.dart';
+// import 'package:get/get.dart';
 
 class FirestoreServices {
   //get user data

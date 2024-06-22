@@ -3,7 +3,7 @@ import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/controllers/auth_controller.dart';
 import 'package:emart_app/controllers/profile_controller.dart';
 import 'package:emart_app/services/firestore_services.dart';
-import 'package:emart_app/view/auth_screen/login_screen.dart';
+// import 'package:emart_app/view/auth_screen/login_screen.dart';
 import 'package:emart_app/view/chat_screen/messaging_screen.dart';
 import 'package:emart_app/view/orders_screen/orders_screen.dart';
 import 'package:emart_app/view/profile_screen/components/details_cart.dart';
@@ -12,8 +12,8 @@ import 'package:emart_app/view/splash_screen/splash_screen.dart';
 import 'package:emart_app/view/wishlist_screen/wishlist_screen.dart';
 import 'package:emart_app/widgets_common/bg_widget.dart';
 import 'package:emart_app/widgets_common/loadingIndicator.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class ProfileScreen extends StatelessWidget {

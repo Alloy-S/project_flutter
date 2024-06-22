@@ -1,12 +1,13 @@
 import 'dart:convert';
-import 'package:admins/const/const.dart';
-import 'package:admins/models/rajaongkir_kota_model.dart';
-import 'package:admins/models/rajaongkir_province_model.dart';
-import 'package:admins/models/rajaongkir_cost_model.dart';
+import 'package:emart_app/consts/consts.dart';
+import 'package:emart_app/models/rajaongkir_kota_model.dart';
+import 'package:emart_app/models/rajaongkir_province_model.dart';
+import 'package:emart_app/models/rajaongkir_cost_model.dart';
 import 'package:http/http.dart' as http;
 
 class RajaOngkirService {
-  static const keyAPI = '148b168028316310f623f0d0b06750e3';
+  // static const keyAPI = '148b168028316310f623f0d0b06750e3'; // alloy-s
+  static const keyAPI = 'b60c428282f35a54007014075c833da0'; // alloy-stv
 
   static Future<List<dynamic>> fetchProvince() async {
     const url = "https://api.rajaongkir.com/starter/province";
