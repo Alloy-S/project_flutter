@@ -24,7 +24,7 @@ class StoreServices {
         .snapshots();
   }
 
-  static getOrdersCount(uid) async {
+  static getOrdersCount(uid) {
 
     var snapshot =  firestore
         .collection(ordersCollection)

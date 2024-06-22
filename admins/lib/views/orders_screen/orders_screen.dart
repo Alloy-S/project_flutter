@@ -6,7 +6,6 @@ import 'package:admins/views/widgets/appbar_widget.dart';
 import 'package:admins/views/widgets/loading_indicator.dart';
 import 'package:admins/views/widgets/text_style.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart' as intl;
 
@@ -29,7 +28,7 @@ class OrdersScreen extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   child: Column(
                     children: List.generate(
                       data.length,
@@ -49,7 +48,7 @@ class OrdersScreen extends StatelessWidget {
                           children: [
                             Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.calendar_month,
                                   color: fontGrey,
                                 ),
@@ -62,18 +61,18 @@ class OrdersScreen extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                Icon(
+                               const Icon(
                                   Icons.payment_outlined,
                                   color: fontGrey,
                                 ),
                                 10.widthBox,
-                                boldText(text: unpaid, color: red),
+                                boldText(text: paid, color: red),
                               ],
                             ),
                           ],
                         ),
                         trailing: boldText(
-                            text: "\$ ${data[index]['total_amount']}", color: purpleColor, size: 16.0),
+                            text: "IDR ${data[index]['total_amount']}", color: purpleColor, size: 16.0),
                       ).box.margin(const EdgeInsets.only(bottom: 4)).make();
                     
                       } 

@@ -56,32 +56,10 @@ class ProductDetails extends StatelessWidget {
                     size: 25,
                   ),
                   10.heightBox,
-                  boldText(text: "\$${data['p_price']}", color: red, size: 18.0),
+                  boldText(text: "IDR ${data['p_price']}", color: red, size: 18.0),
                   20.heightBox,
                   Column(
                     children: [
-                      // Row(
-                      //   children: [
-                      //     SizedBox(
-                      //       width: 100,
-                      //       child: boldText(text: "Color: ", color: fontGrey),
-                      //     ),
-                      //     Row(
-                      //       children: List.generate(
-                      //         data['p_colors'].length,
-                      //         (index) => VxBox()
-                      //             .size(40, 40)
-                      //             .roundedFull
-                      //             .color(Color(data['p_colors'][index]))
-                      //             .margin(
-                      //                 const EdgeInsets.symmetric(horizontal: 4))
-                      //             .make()
-                      //             .onTap(() {}),
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-                      // 10.heightBox,
                       Row(
                         children: [
                           SizedBox(

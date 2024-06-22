@@ -150,7 +150,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                         title2: "Payment Method",
                       ),
                       orderPlaceDetails(
-                        d1: "Unpaid",
+                        d1: "Paid",
                         d2: statusdeliver,
                         title1: "Payment Status",
                         title2: "Delivery Status",
@@ -189,7 +189,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                                   boldText(
                                       text: "Total Amount", color: purpleColor),
                                   boldText(
-                                      text: "\$ ${widget.data['total_amount']}",
+                                      text: "IDR ${widget.data['total_amount']}",
                                       color: red,
                                       size: 16.0),
                                 ],
