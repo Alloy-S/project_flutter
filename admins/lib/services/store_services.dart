@@ -24,6 +24,15 @@ class StoreServices {
         .snapshots();
   }
 
+  static getOrdersCount(uid) async {
+
+    var snapshot =  firestore
+        .collection(ordersCollection)
+        .where('vendors', arrayContains: uid)
+        .snapshots();
+    return snapshot;
+  }
+
   static getProducts(uid) {
     return firestore
         .collection(productsCollection)
