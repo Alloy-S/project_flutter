@@ -133,26 +133,6 @@ class ProfileScreen extends StatelessWidget {
                         },
                       ),
 
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      //   children: [
-                      //     detailsCard(
-                      //         count: data['cart_count'],
-                      //         title: "in cart",
-                      //         width: context.screenWidth / 3.4),
-                      //     detailsCard(
-                      //         count: data['wishlist_count'],
-                      //         title: "in wishlist",
-                      //         width: context.screenWidth / 3.4),
-                      //     detailsCard(
-                      //         count: data['order_count'],
-                      //         title: "orders",
-                      //         width: context.screenWidth / 3.4),
-                      //   ],
-                      // ),
-
-                      //button sec
-
                       ListView.separated(
                         shrinkWrap: true,
                         separatorBuilder: (context, index) {

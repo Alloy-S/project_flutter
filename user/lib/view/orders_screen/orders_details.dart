@@ -100,6 +100,7 @@ class OrderDetails extends StatelessWidget {
                             children: [
                               "Total Product".text.fontFamily(semibold).make(),
                               "${data['total_product']}"
+                                  .numCurrency
                                   .text
                                   .color(redColor)
                                   .fontFamily(bold)
@@ -107,6 +108,7 @@ class OrderDetails extends StatelessWidget {
                                   10.heightBox,
                               "Total Amount".text.fontFamily(semibold).make(),
                               "${data['total_amount']}"
+                                  .numCurrency
                                   .text
                                   .color(redColor)
                                   .fontFamily(bold)
