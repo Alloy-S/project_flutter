@@ -128,3 +128,13 @@ const imgStripe = "assets/images/stripe.png";
 const imgTwocheckout = "assets/images/twocheckout.png";
 const imgVogue = "assets/images/vogue.png";
 const imgWallet = "assets/images/wallet.png";
+const lambo = "assets/images/lambo.jpg";
+const lambo1 = "assets/images/lambo1.jpg";
+const lambo2 = "assets/images/lambo2.jpg";
+const lambo3 = "assets/images/lambo3.jpg";
+const lambo4 = "assets/images/lambo4.jpg";
+const lambo5 = "assets/images/lambo5.jpg";
+const lambo6 = "assets/images/lambo6.jpg";
+const lambo7 = "assets/images/lambo7.jpg";
+
+
