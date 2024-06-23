@@ -38,10 +38,13 @@ class _ShippingDetails extends State<ShippingDetails> {
         height: 60,
         child: ourButton(
           onPress: () async {
-            if (controller.addressController.text.length > 10) {
-              print("shipping detail");
+            if (controller.addressController.text.length > 10 &&
+                controller.strKotaId.value != '' &&
+                controller.phoneController.text != '' &&
+                controller.postalcodeController.text != '') {
+              // print("shipping detail");
               await controller.getProductDetails();
-              Get.to(() => ShippingDetail());
+              Get.to(() => const ShippingDetail());
               // Get.to(() => const ShippingDetails());
             } else {
               VxToast.show(context, msg: "Please fill the form");
@@ -108,11 +111,13 @@ class _ShippingDetails extends State<ShippingDetails> {
                     ),
                     onChanged: (value) {
                       controller.strKotaId.value = value!.cityId;
-                      controller.strKota.value = "${value!.type} ${value!.cityName}";
+                      controller.strKota.value =
+                          "${value!.type} ${value!.cityName}";
                     },
                     itemAsString: (item) => "${item.type} ${item.cityName}",
                     asyncItems: (text) {
-                      return RajaOngkirService.fetchKota(controller.strProvinceId.value);
+                      return RajaOngkirService.fetchKota(
+                          controller.strProvinceId.value);
                     },
                   ),
                 ),

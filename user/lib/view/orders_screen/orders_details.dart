@@ -52,6 +52,7 @@ class OrderDetails extends StatelessWidget {
               const Divider(),
               10.heightBox,
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   orderPlaceDetails(
                     d1: data['order_code'],
@@ -79,19 +80,6 @@ class OrderDetails extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            "Shipping Address".text.fontFamily(semibold).make(),
-                            "${data['order_by_name']}".text.make(),
-                            "${data['order_by_email']}".text.make(),
-                            "${data['order_by_address']}".text.make(),
-                            "${data['order_by_city']}".text.make(),
-                            "${data['order_by_state']}".text.make(),
-                            "${data['order_by_phone']}".text.make(),
-                            "${data['order_by_postalcode']}".text.make(),
-                          ],
-                        ),
                         SizedBox(
                           width: 130,
                           child: Column(
@@ -105,7 +93,7 @@ class OrderDetails extends StatelessWidget {
                                   .color(redColor)
                                   .fontFamily(bold)
                                   .make(),
-                                  10.heightBox,
+                              10.heightBox,
                               "Total Amount".text.fontFamily(semibold).make(),
                               "${data['total_amount']}"
                                   .numCurrency
@@ -119,7 +107,23 @@ class OrderDetails extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Divider(),
+                  const Divider(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        "Shipping Address".text.fontFamily(semibold).make(),
+                        "${data['order_by_name']}".text.make(),
+                        "${data['order_by_email']}".text.make(),
+                        "${data['order_by_address']}".text.make(),
+                        "${data['order_by_city']}".text.make(),
+                        "${data['order_by_state']}".text.make(),
+                        "${data['order_by_phone']}".text.make(),
+                        "${data['order_by_postalcode']}".text.make(),
+                      ],
+                    ),
+                  ),
                   orderCourierDetails(
                       title1: 'Courier Name',
                       title2: 'Harga',
@@ -173,7 +177,7 @@ class OrderDetails extends StatelessWidget {
                   .box
                   .outerShadowMd
                   .white
-                  .margin(EdgeInsets.only(bottom: 4))
+                  .margin(const EdgeInsets.only(bottom: 4))
                   .make(),
               20.heightBox,
             ],

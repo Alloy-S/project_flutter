@@ -3,8 +3,8 @@ import 'package:admins/controllers/order_controller.dart';
 import 'package:admins/views/orders_screen/components/order_place.dart';
 import 'package:admins/views/widgets/our_button.dart';
 import 'package:admins/views/widgets/text_style.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:admins/views/orders_screen/components/order_courier_details.dart';
+// import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart' as intl;
 
@@ -21,7 +21,6 @@ class _OrderDetailsState extends State<OrderDetails> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     controller.getOrders(widget.data);
     controller.confirmed.value = widget.data['order_confirmed'];
@@ -59,7 +58,7 @@ class _OrderDetailsState extends State<OrderDetails> {
               child: ourButton(
                   color: green,
                   onPress: () {
-                    print('confirm order press');
+                    // print('confirm order press');
                     controller.confirmed(true);
                     controller.changeStatus(
                         title: 'order_confirmed',
@@ -124,7 +123,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                       ],
                     )
                         .box
-                        .padding(EdgeInsets.all(8))
+                        .padding(const EdgeInsets.all(8))
                         .outerShadowMd
                         .white
                         .border(color: lightGrey)
@@ -133,6 +132,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                   ),
                   //order details section
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       orderPlaceDetails(
                         d1: "${widget.data['order_code']}",
@@ -161,43 +161,72 @@ class _OrderDetailsState extends State<OrderDetails> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                boldText(
-                                    text: "Shipping Address",
-                                    color: purpleColor),
-                                "${widget.data['order_by_name']}".text.make(),
-                                "${widget.data['order_by_email']}".text.make(),
-                                "${widget.data['order_by_address']}"
-                                    .text
-                                    .make(),
-                                "${widget.data['order_by_city']}".text.make(),
-                                "${widget.data['order_by_state']}".text.make(),
-                                "${widget.data['order_by_phone']}".text.make(),
-                                "${widget.data['order_by_postalcode']}"
-                                    .text
-                                    .make(),
-                              ],
-                            ),
                             SizedBox(
                               width: 130,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  boldText(
-                                      text: "Total Amount", color: purpleColor),
-                                  boldText(
-                                      text: "IDR ${widget.data['total_amount']}",
-                                      color: red,
-                                      size: 16.0),
+                                  "Total Product"
+                                      .text
+                                      .fontWeight(FontWeight.w600)
+                                      .make(),
+                                  "${widget.data['total_product']}"
+                                      .numCurrency
+                                      .text
+                                      .fontWeight(FontWeight.w600)
+                                      .color(red)
+                                      .make(),
+                                  10.heightBox,
+                                  "Total Amount"
+                                      .text
+                                      .fontWeight(FontWeight.w600)
+                                      .make(),
+                                  "${widget.data['total_amount']}"
+                                      .numCurrency
+                                      .text
+                                      .fontWeight(FontWeight.w600)
+                                      .color(red)
+                                      .make(),
                                 ],
                               ),
                             ),
                           ],
                         ),
                       ),
+                      const Divider(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            boldText(
+                                text: "Shipping Address", color: purpleColor),
+                            "${widget.data['order_by_name']}".text.make(),
+                            "${widget.data['order_by_email']}".text.make(),
+                            "${widget.data['order_by_address']}".text.make(),
+                            "${widget.data['order_by_city']}".text.make(),
+                            "${widget.data['order_by_state']}".text.make(),
+                            "${widget.data['order_by_phone']}".text.make(),
+                            "${widget.data['order_by_postalcode']}".text.make(),
+                          ],
+                        ),
+                      ),
+                      orderCourierDetails(
+                          title1: 'Courier Name',
+                          title2: 'Harga',
+                          d1: widget.data['courier'][0]['name'],
+                          d2: widget.data['courier'][0]['value']),
+                      orderCourierDetails(
+                          title1: 'Service',
+                          title2: 'Description',
+                          d1: widget.data['courier'][0]['service'],
+                          d2: widget.data['courier'][0]['description']),
+                      orderCourierDetails(
+                          title1: 'ETD',
+                          title2: '',
+                          d1: widget.data['courier'][0]['etd'],
+                          d2: ''),
                     ],
                   )
                       .box
@@ -220,18 +249,9 @@ class _OrderDetailsState extends State<OrderDetails> {
                         children: [
                           orderPlaceDetails(
                               title1: "${controller.order[index]['title']}",
-                              title2: "\$${controller.order[index]['tprice']}",
+                              title2: "${controller.order[index]['tprice']}",
                               d1: "${controller.order[index]['qty']}x",
-                              d2: "Refundable"),
-                          // Padding(
-                          //   padding: const EdgeInsets.symmetric(horizontal: 16),
-                          //   child: Container(
-                          //     width: 30,
-                          //     height: 20,
-                          //     color: Color(controller.order[index]['color']),
-                          //   ),
-                          // ),
-                          // const Divider(),
+                              d2: ""),
                         ],
                       );
                     }).toList(),

@@ -14,13 +14,14 @@ class OrdersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(OrderController());
+    Get.put(OrderController());
 
     return Scaffold(
       appBar: appbarWidget(orders),
       body: StreamBuilder(
           stream: StoreServices.getOrders(currentUser!.uid),
-          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (!snapshot.hasData) {
               return loadingIndicator();
             } else {
@@ -30,20 +31,20 @@ class OrdersScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Column(
-                    children: List.generate(
-                      data.length,
-                      (index) {
-
-
-                        var time = data[index]['order_date'].toDate();
-                        return ListTile(
+                    children: List.generate(data.length, (index) {
+                      var time = data[index]['order_date'].toDate();
+                      return ListTile(
                         onTap: () {
-                          Get.to(() => OrderDetails(data: data[index],));
+                          Get.to(() => OrderDetails(
+                                data: data[index],
+                              ));
                         },
                         tileColor: textfieldGrey,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12)),
-                        title: boldText(text: "${data[index]['order_code']}", color: fontGrey),
+                        title: boldText(
+                            text: "${data[index]['order_code']}",
+                            color: fontGrey),
                         subtitle: Column(
                           children: [
                             Row(
@@ -61,7 +62,7 @@ class OrdersScreen extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                               const Icon(
+                                const Icon(
                                   Icons.payment_outlined,
                                   color: fontGrey,
                                 ),
@@ -72,11 +73,11 @@ class OrdersScreen extends StatelessWidget {
                           ],
                         ),
                         trailing: boldText(
-                            text: "IDR ${data[index]['total_amount']}", color: purpleColor, size: 16.0),
+                            text: "IDR ${data[index]['total_amount']}",
+                            color: purpleColor,
+                            size: 16.0),
                       ).box.margin(const EdgeInsets.only(bottom: 4)).make();
-                    
-                      } 
-                    ),
+                    }),
                   ),
                 ),
               );
