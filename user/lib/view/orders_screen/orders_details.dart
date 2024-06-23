@@ -66,13 +66,13 @@ class OrderDetails extends StatelessWidget {
                         .format((data['order_date'].toDate())),
                     d2: data['payment_method'],
                     title1: "Order Code",
-                    title2: "Shipping Method",
+                    title2: "Payment Method",
                   ),
                   orderPlaceDetails(
                     d1: "Paid",
-                    d2: "Order Placed",
+                    d2: "",
                     title1: "Payment Status",
-                    title2: "Delivery Status",
+                    title2: "",
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(

@@ -69,4 +69,4 @@ const wishlist = "My Wishlist",
     newpass = "New Password";
 
 //Payment methods strings
-const paypal = "Paypal", stripe = "Stripe", cod = "Cash on delivery";
+const debitCredit = "Debit/Credit", gopay = "Gopay", cod = "Cash on delivery";

@@ -1,16 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:emart_app/consts/colors.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/controllers/home_controller.dart';
 import 'package:emart_app/services/firestore_services.dart';
 import 'package:emart_app/view/category_screen/item_details.dart';
 import 'package:emart_app/view/home_screen/components/featured_button.dart';
 import 'package:emart_app/view/home_screen/search_screen.dart';
-import 'package:emart_app/widgets_common/home_buttons.dart';
 import 'package:emart_app/widgets_common/loadingIndicator.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -36,7 +32,7 @@ class HomeScreen extends StatelessWidget {
                   controller: controller.searchController,
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    suffixIcon: Icon(Icons.search).onTap(() {
+                    suffixIcon: const Icon(Icons.search).onTap(() {
                       if (controller.searchController.text.isNotEmptyAndNotNull) {
                         Get.to(() => SearchScreen(
                               title: controller.searchController.text,
@@ -46,7 +42,7 @@ class HomeScreen extends StatelessWidget {
                     filled: true,
                     fillColor: whiteColor,
                     hintText: searchanything,
-                    hintStyle: TextStyle(color: textfieldGrey),
+                    hintStyle: const TextStyle(color: textfieldGrey),
                   ),
                 ).box.outerShadowSm.make(),
               ),
@@ -71,7 +67,7 @@ class HomeScreen extends StatelessWidget {
                               .box
                               .rounded
                               .clip(Clip.antiAlias)
-                              .margin(EdgeInsets.symmetric(horizontal: 8))
+                              .margin(const EdgeInsets.symmetric(horizontal: 8))
                               .make();
                         },
                       ),
@@ -170,7 +166,7 @@ class HomeScreen extends StatelessWidget {
                                           )
                                               .box
                                               .white
-                                              .margin(EdgeInsets.symmetric(
+                                              .margin(const EdgeInsets.symmetric(
                                                   horizontal: 4))
                                               .roundedSM
                                               .padding(const EdgeInsets.all(8))
@@ -206,7 +202,7 @@ class HomeScreen extends StatelessWidget {
                               .box
                               .rounded
                               .clip(Clip.antiAlias)
-                              .margin(EdgeInsets.symmetric(horizontal: 8))
+                              .margin(const EdgeInsets.symmetric(horizontal: 8))
                               .make();
                         },
                       ),
@@ -263,7 +259,7 @@ class HomeScreen extends StatelessWidget {
                                       .box
                                       .white
                                       .margin(
-                                          EdgeInsets.symmetric(horizontal: 4))
+                                          const EdgeInsets.symmetric(horizontal: 4))
                                       .roundedSM
                                       .padding(const EdgeInsets.all(12))
                                       .make()
