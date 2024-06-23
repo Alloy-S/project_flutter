@@ -7,7 +7,7 @@ import 'package:get/get_core/src/get_main.dart';
 Widget feautureButton({String? title, icon}) {
   return Row(
     children: [
-      Image.asset(imgS1, width: 40, fit: BoxFit.fill),
+      Image.asset(icon, width: 40, fit: BoxFit.fill),
       10.widthBox,
       title!.text.fontFamily(semibold).color(darkFontGrey).make(),
     ],
