@@ -1,0 +1,61 @@
+{
+    "userDataProfilesMigration": true,
+    "profileAssociations": {
+        "workspaces": {},
+        "emptyWindows": {
+            "1717844232295": "__default__profile__"
+        }
+    },
+    "profileAssociationsMigration": true,
+    "telemetry.sqmId": "{D971E439-C703-4D54-B2FB-485E1A11A67B}",
+    "telemetry.machineId": "2eeb21bf0c5b4c1abcf606124b8e89290bfe48d4929b0b98752a50241dd730bd",
+    "telemetry.devDeviceId": "f27920bf-43af-4db4-94d7-b9a6dca66156",
+    "backupWorkspaces": {
+        "workspaces": [],
+        "folders": [],
+        "emptyWindows": [
+            {
+                "backupFolder": "1717844232295"
+            }
+        ]
+    },
+    "windowControlHeight": 35,
+    "theme": "vs-dark",
+    "themeBackground": "#1f1f1f",
+    "windowSplash": {
+        "zoomLevel": 0,
+        "baseTheme": "vs-dark",
+        "colorInfo": {
+            "foreground": "#cccccc",
+            "background": "#1f1f1f",
+            "editorBackground": "#1f1f1f",
+            "titleBarBackground": "#181818",
+            "activityBarBackground": "#181818",
+            "sideBarBackground": "#181818",
+            "statusBarBackground": "#181818",
+            "statusBarNoFolderBackground": "#1f1f1f"
+        },
+        "layoutInfo": {
+            "sideBarSide": "left",
+            "editorPartMinWidth": 220,
+            "titleBarHeight": 35,
+            "activityBarWidth": 48,
+            "sideBarWidth": 0,
+            "statusBarHeight": 22,
+            "windowBorder": false
+        }
+    },
+    "windowsState": {
+        "lastActiveWindow": {
+            "backupPath": "D:\\Kuliah\\project_flutter\\user\\android\\~\\temp\\Backups\\1717844232295",
+            "uiState": {
+                "mode": 1,
+                "x": 466,
+                "y": 42,
+                "width": 1025,
+                "height": 769
+            }
+        },
+        "openedWindows": []
+    }
+}

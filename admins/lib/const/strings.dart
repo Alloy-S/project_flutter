@@ -29,6 +29,7 @@ const appname = "eMart Admin App",
     name = "Username",
     confirmPassword = "Confirm Password",
     chats = "Chats",
+    shipping = "shipping",
     credit = "Project AMBW";
 
 const nameHint = "eg. Vendor Name",
@@ -40,4 +41,5 @@ const nameHint = "eg. Vendor Name",
     mobile = "Shop Mobile",
     website = "Shop Website",
     shopName = "Shop Name",
-    address = "Shop Address";
+    address = "Shop Address",
+    loggedin = "Berhasil Login";
